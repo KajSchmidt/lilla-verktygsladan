@@ -1,0 +1,21 @@
+{
+  "name": "Slumparen",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "content_scripts": [ {
+    "js": [ "jquery.min.js", "collector.js" ],
+    "matches": ["https://sms.schoolsoft.se/nti/jsp/teacher/right_teacher_lesson_status.jsp*"]
+  }],
+  "permissions": [
+    "https://*/*",
+    "http://*/*",
+    "tabs"
+  ]
+}

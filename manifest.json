@@ -10,7 +10,7 @@
     "persistent": true
   },
   "content_scripts": [ {
-    "js": [ "jquery.min.js", "collector.js" ],
+    "js": [ "jquery.min.js", "collector.js", "injector.js"],
     "matches": ["https://sms.schoolsoft.se/nti/jsp/teacher/right_teacher_lesson_status.jsp*"]
   }],
   "permissions": [

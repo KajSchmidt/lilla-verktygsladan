@@ -91,7 +91,7 @@ function collectAttendingNames() {
     slumpList.forEach(element => {
         if (i == 1) {
           let li = document.createElement("li");
-          li.style = "text-transform:capitalize; font-weight:600; border-bottom: 1px solid black;";
+          li.style = "text-transform:capitalize; font-weight:600;";
           li.textContent = prefix[getRandomInt(prefix.length)] + " " + suffix[getRandomInt(suffix.length)];
           slumpUl.appendChild(li);
         }

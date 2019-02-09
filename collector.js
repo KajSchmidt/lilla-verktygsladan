@@ -36,8 +36,8 @@ function collectNames() {
 
 }
 
-let prefix = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic'];
-let suffix = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas']; 
+let prefix = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial'];
+let suffix = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'targigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastondons', 'starfish', 'shamblers', 'shoggoths'];
 
 function collectAttendingNames() {
 
@@ -54,6 +54,7 @@ function collectAttendingNames() {
   let rightBody = document.getElementById("right-body");
 
   let classUl = document.createElement("ul");
+  classUl.style = "list-style: none;";
   
   studentList.forEach(element => {
     let li = document.createElement("li");
@@ -64,22 +65,25 @@ function collectAttendingNames() {
   leftBody.appendChild(classUl);
 
   let modalFooter = document.getElementsByClassName("modal-footer")[0];
-  
-  let slumpButton = document.createElement("button");
-  slumpButton.type = "button";
-  slumpButton.class="btn btn-danger";
-  slumpButton.textContent = "Slumpa";
-  modalFooter.appendChild(slumpButton);
+  let closeBtn = document.getElementById("closeBtn");
 
-  let slumpNumber = document.createElement("input");
-  slumpNumber.type = "number";
-  slumpNumber.id = "numberInput";
-  slumpNumber.placeholder = "Gruppstorlek";
-  modalFooter.appendChild(slumpNumber);
+  let slumpBtn = document.createElement("button");
+  slumpBtn.type = "button";
+  slumpBtn.class="btn btn-danger";
+  slumpBtn.textContent = "Slumpa";
+  //modalFooter.appendChild(slumpButton);
+  closeBtn.parentNode.insertBefore(slumpBtn, closeBtn);
 
-  slumpButton.addEventListener("click", function() {
+  let slumpInput = document.createElement("input");
+  slumpInput.type = "number";
+  slumpInput.id = "numberInput";
+  slumpInput.placeholder = "Gruppstorlek";
+  //modalFooter.appendChild(slumpNumber);
+  closeBtn.parentNode.insertBefore(slumpInput, slumpBtn);
+
+  slumpBtn.addEventListener("click", function() {
     let slumpUl = document.createElement("ul");
-
+    slumpUl.style = "list-style: none;";
     slumpList = shuffle(studentList);
 
     let i = 1;
@@ -87,16 +91,17 @@ function collectAttendingNames() {
     slumpList.forEach(element => {
         if (i == 1) {
           let li = document.createElement("li");
-          li.style = "text-transform:capitalize; font-weight:600;";
+          li.style = "text-transform:capitalize; font-weight:600; border-bottom: 1px solid black;";
           li.textContent = prefix[getRandomInt(prefix.length)] + " " + suffix[getRandomInt(suffix.length)];
           slumpUl.appendChild(li);
         }
         let li = document.createElement("li");
         li.textContent = element;
         slumpUl.appendChild(li);
-        if( i == slumpNumber.value) {
+        if( i == slumpInput.value) {
           rightBody.appendChild(slumpUl);
           slumpUl = document.createElement("ul");
+          slumpUl.style = "list-style: none;";
           i = 0;
         }
         i++;

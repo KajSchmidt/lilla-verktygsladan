@@ -1,3 +1,23 @@
+function shuffle(array) {
+  // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 function collectNames() {
 
   var studentList = []
@@ -23,6 +43,51 @@ function collectAttendingNames() {
 
   });
 
-  console.log(studentList);
+  let leftBody = document.getElementById("left-body");
+  let rightBody = document.getElementById("right-body");
 
+  let classUl = document.createElement("ul");
+  
+  studentList.forEach(element => {
+    let li = document.createElement("li");
+    li.textContent = element;
+    classUl.appendChild(li);    
+  });
+
+  leftBody.appendChild(classUl);
+
+  let modalFooter = document.getElementsByClassName("modal-footer")[0];
+  
+  let slumpButton = document.createElement("button");
+  slumpButton.type = "button";
+  slumpButton.class="btn btn-danger";
+  slumpButton.textContent = "Slumpa";
+  modalFooter.appendChild(slumpButton);
+
+  let slumpNumber = document.createElement("input");
+  slumpNumber.type = "number";
+  slumpNumber.id = "numberInput";
+  slumpNumber.placeholder = "Gruppstorlek";
+  modalFooter.appendChild(slumpNumber);
+
+  slumpButton.addEventListener("click", function() {
+    let slumpUl = document.createElement("ul");
+
+    slumpList = shuffle(studentList);
+
+    let i = 1;
+
+    slumpList.forEach(element => {
+        let li = document.createElement("li");
+        li.textContent = element;
+        slumpUl.appendChild(li);
+        if( i == slumpNumber.value) {
+          rightBody.appendChild(slumpUl);
+          slumpUl = document.createElement("ul");
+          i = 0;
+        }
+        i++;
+      });
+      rightBody.appendChild(slumpUl);
+  });
 }

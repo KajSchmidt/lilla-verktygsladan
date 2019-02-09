@@ -18,6 +18,10 @@ function shuffle(array) {
   return array;
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 function collectNames() {
 
   var studentList = []
@@ -31,6 +35,9 @@ function collectNames() {
   console.log(studentList);
 
 }
+
+let prefix = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic'];
+let suffix = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas']; 
 
 function collectAttendingNames() {
 
@@ -78,6 +85,12 @@ function collectAttendingNames() {
     let i = 1;
 
     slumpList.forEach(element => {
+        if (i == 1) {
+          let li = document.createElement("li");
+          li.style = "text-transform:capitalize; font-weight:600;";
+          li.textContent = prefix[getRandomInt(prefix.length)] + " " + suffix[getRandomInt(suffix.length)];
+          slumpUl.appendChild(li);
+        }
         let li = document.createElement("li");
         li.textContent = element;
         slumpUl.appendChild(li);

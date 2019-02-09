@@ -36,8 +36,8 @@ function collectNames() {
 
 }
 
-let prefix = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy'];
-let suffix = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'targigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits'];
+let adjective = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy', 'slobbering', 'poisonous'];
+let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits'];
 
 function collectAttendingNames() {
 
@@ -92,7 +92,7 @@ function collectAttendingNames() {
         if (i == 1) {
           let li = document.createElement("li");
           li.style = "text-transform:capitalize; font-weight:600;";
-          li.textContent = prefix[getRandomInt(prefix.length)] + " " + suffix[getRandomInt(suffix.length)];
+          li.textContent = adjective[getRandomInt(adjective.length)] + " " + noun[getRandomInt(noun.length)];
           slumpUl.appendChild(li);
         }
         let li = document.createElement("li");

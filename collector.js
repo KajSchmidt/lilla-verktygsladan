@@ -25,19 +25,15 @@ function getRandomInt(max) {
 function collectNames() {
 
   var studentList = []
+  if (studentList.length == 0) {
+    $("#right>form>table.longlist>tbody").find('tr').slice(1, -1).each(function(){
+          studentList.push($(this).children('td').slice(1,2).text());
+    });
+  }
 
-	$("#right>form>table.longlist>tbody").find('tr').slice(1, -1).each(function(){
-
-        studentList.push($(this).children('td').slice(1,2).text());
-
-  });
-
-  console.log(studentList);
+  gruppSlump(studentList, "Hela klassen");
 
 }
-
-let adjective = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy', 'slobbering', 'poisonous'];
-let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits'];
 
 function collectAttendingNames() {
 
@@ -51,7 +47,16 @@ function collectAttendingNames() {
     });
   }
 
-  $("#leftBdy").append("<ul class='slump-list'></ul>");
+  gruppSlump(studentList, "Närvarande");
+
+}
+
+function gruppSlump(studentList, header) {
+
+  let adjective = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy', 'slobbering', 'poisonous'];
+  let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits'];  
+
+  $("#leftBdy").empty().append("<h4>" + header + "</h4>").append("<ul class='slump-list'></ul>");
 
   studentList.forEach(element => {
     $("#leftBdy ul").append("<li>" + element + "</li>");
@@ -81,4 +86,5 @@ function collectAttendingNames() {
         i++;
       });
   });
+
 }

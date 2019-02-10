@@ -1,7 +1,8 @@
 (function() {
 
-  $("#right").prepend("<button class='button' onClick='collectNames()' data-toggle='modal' data-target='#slump'>Samla namn</button>");
-  $("#right").prepend("<button class='button' onClick='collectAttendingNames()' data-toggle='modal' data-target='#slump'>Samla närvarande namn</button>");
+  $("#right").prepend("<div class='row' id='btns'></div>");
+  $("#btns").append("<div class='col'><button class='button' onClick='collectNames()' data-toggle='modal' data-target='#slump'>Samla namn</button></div>");
+  $("#btns").append("<div class='col'><button class='button' onClick='collectAttendingNames()' data-toggle='modal' data-target='#slump'>Samla närvarande namn</button></div>");
 
   $("body").append("<style>"
         + ".row{display: flex; flex-wrap: wrap;}"

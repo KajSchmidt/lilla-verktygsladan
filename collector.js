@@ -51,55 +51,34 @@ function collectAttendingNames() {
     });
   }
 
-  let leftBody = document.getElementById("left-body");
-  let rightBody = document.getElementById("right-body");
+  $("#leftBdy").append("<ul class='slump-list'></ul>");
 
-  let classUl = document.createElement("ul");
-  classUl.style = "list-style: none;";
-  
   studentList.forEach(element => {
-    let li = document.createElement("li");
-    li.textContent = element;
-    classUl.appendChild(li);    
+    $("#leftBdy ul").append("<li>" + element + "</li>");
   });
 
-  leftBody.appendChild(classUl);
-
-  let slumpBtn = document.getElementById("slumpBtn");
-  let slumpInput = document.getElementById("numberInput");
-
-  slumpBtn.addEventListener("click", function() {
-
-    // suck då
-    $("#right-body").empty();
-    $("#right-body").append("<h4>Grupper</h4>");
+  $("#slumpBtn").click(function() {
 
     let groupNumber = 1;
-    let slumpUl = document.createElement("ul");
-    slumpUl.style = "list-style: none;";
+    let i = 1;
     slumpList = shuffle(studentList);
 
-    let i = 1;
-
+    $("#rightBdy").empty().append("<h4>Grupper</h4>").append("<ul class='slump-list'></ul>");
+    
     slumpList.forEach(element => {
         if (i == 1) {
-          let li = document.createElement("li");
-          li.style = "text-transform:capitalize; font-weight:600;";
-          li.textContent = groupNumber + ". " + adjective[getRandomInt(adjective.length)] + " " + noun[getRandomInt(noun.length)];
-          slumpUl.appendChild(li);
+          let groupText = groupNumber + ". " + adjective[getRandomInt(adjective.length)] + " " + noun[getRandomInt(noun.length)];
+          $("#rightBdy ul").append("<li class='slump-list-group'>" + groupText + "</li>");
           groupNumber++;
         }
-        let li = document.createElement("li");
-        li.textContent = element;
-        slumpUl.appendChild(li);
-        if( i == slumpInput.value) {
-          rightBody.appendChild(slumpUl);
-          slumpUl = document.createElement("ul");
-          slumpUl.style = "list-style: none;";
+
+        $("#rightBdy ul").append("<li>" + element + "</li>");
+
+        if (i == $("#numberInput").val()) {
+          $("#rightBdy ul").append("<li>&nbsp;</li>");
           i = 0;
         }
         i++;
       });
-      rightBody.appendChild(slumpUl);
   });
 }

@@ -51,10 +51,10 @@ function collectAttendingNames() {
 
 }
 
-function gruppSlump(studentList, header) {
+let adjective = ['ginormous', 'explosive', 'awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy', 'slobbering', 'poisonous', 'galactic', 'drooling', 'electric'];
+let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits', 'boogalos', 'bugbears', 'ninjas', 'pedestrians'];  
 
-  let adjective = ['awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy', 'slobbering', 'poisonous'];
-  let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits'];  
+function gruppSlump(studentList, header) {
 
   $("#leftBdy").empty().append("<h4>" + header + "</h4>").append("<ul class='slump-list'></ul>");
 
@@ -66,14 +66,21 @@ function gruppSlump(studentList, header) {
 
     let groupNumber = 1;
     let i = 1;
+    let preUsed = adjective;
+    let suffUsed = noun;
     slumpList = shuffle(studentList);
 
     $("#rightBdy").empty().append("<h4>Grupper</h4>").append("<ul class='slump-list'></ul>");
     
     slumpList.forEach(element => {
         if (i == 1) {
-          let groupText = groupNumber + ". " + adjective[getRandomInt(adjective.length)] + " " + noun[getRandomInt(noun.length)];
-          $("#rightBdy ul").append("<li class='slump-list-group'>" + groupText + "</li>");
+          let pre = preUsed[getRandomInt(preUsed.length)];
+          let suff = suffUsed[getRandomInt(suffUsed.length)];
+
+          $("#rightBdy ul").append("<li class='slump-list-group'>" + groupNumber + ". " + pre + " " + suff + "</li>");
+
+          preUsed = preUsed.filter(item => item !== pre);
+          suffUsed = suffUsed.filter(item => item !== suff);
           groupNumber++;
         }
 

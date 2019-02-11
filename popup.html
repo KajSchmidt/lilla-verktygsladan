@@ -17,8 +17,10 @@
           margin-bottom:10px;
         }
 
-        .btn {
-          text-transform: uppercase;
+        .btn, .btn>small{
+        
+          letter-spacing: 2px;
+          font-weight: 500;
         }
       </style>
 
@@ -42,8 +44,8 @@
 
 <h6>Gruppslumparen</h6>
 <div class="btn-group btn-block btn-group-sm" role="group" aria-label="">
-  <button class="btn btn-success schoolsoft" id="modalNames">Alla</button>
-  <button class="btn btn-success schoolsoft" id="modalAttendingNames">Närvarande</button>
+  <button class="btn btn-success schoolsoft" id="modalNames"><small>Alla</small></button>
+  <button class="btn btn-success schoolsoft" id="modalAttendingNames"><small>Närvarande</small></button>
 </div>
 
 <!--

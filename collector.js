@@ -1,3 +1,80 @@
+
+
+chrome.runtime.onMessage.addListener(
+  function(request) {
+    switch (request.action) {
+      case "copynames":
+        collectNames("all", "list", "clipboard");
+        break;
+      case "copyattendingnames":
+        collectNames("attending", "list", "clipboard");
+        break;
+      case "modalnames":
+        collectNames("all", "json", "modal");
+        break;
+      case "modalattendingnames":
+        collectNames("attending", "json", "modal");
+        break;
+    }
+});
+
+
+
+
+
+function collectNames(scope, format, target) {
+  var studentList = "";
+
+	$("#right>form>table.longlist>tbody").find('tr').slice(1, -1).each(function(){
+
+    if ($(this).children('td').slice(2,3).children('select').val() != 0 && scope == "attending") {
+      //Skip
+    }
+
+    else {
+
+        var studentName = $(this).children('td').slice(1,2).text();
+        studentName = studentName.trim();
+        studentName = studentName.split(" ");
+        var firstName = studentName[studentName.length - 1];
+        var sureName = studentName[0];
+        studentList += firstName + " " + sureName + "\n";
+    }
+
+  });
+
+  studentList = studentList.replace(/\n$/, "");
+
+
+
+  if (format == "json") {
+    studentList = studentList.split("\n");
+  }
+
+
+  if (target == "clipboard") {
+    $("#toClipBoard").val(studentList);
+    $("#toClipBoard").select();
+    document.execCommand("copy");
+  }
+
+  if (target == "modal") {
+    var modal_title;
+
+    switch (scope) {
+      case "all":
+        modal_title = "Hela klassen";
+        break;
+      case "attending":
+        modal_title = "Närvarande";
+        break;
+    }
+
+    gruppSlump(studentList, modal_title);
+  }
+
+}
+
 function shuffle(array) {
   // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -22,39 +99,12 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-function collectNames() {
-
-  var studentList = []
-  if (studentList.length == 0) {
-    $("#right>form>table.longlist>tbody").find('tr').slice(1, -1).each(function(){
-          studentList.push($(this).children('td').slice(1,2).text());
-    });
-  }
-
-  gruppSlump(studentList, "Hela klassen");
-
-}
-
-function collectAttendingNames() {
-
-  var studentList = [];
-
-  if (studentList.length == 0) {
-    $("#right>form>table.longlist>tbody").find('tr').slice(1, -1).each(function(){
-      if ($(this).children('td').slice(2,3).children('select').val()== 0) {
-        studentList.push($(this).children('td').slice(1,2).text());
-      }
-    });
-  }
-
-  gruppSlump(studentList, "Närvarande");
-
-}
-
 let adjective = ['ginormous', 'explosive', 'awesome', 'rabid', 'raving', 'slippery', 'festive', 'fantastic', 'cerulean', 'cosmic', 'transcendent', 'bionic', 'cyber', 'shambling', 'primordial', 'bubbling', 'frothy', 'slobbering', 'poisonous', 'galactic', 'drooling', 'electric'];
-let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits', 'boogalos', 'bugbears', 'ninjas', 'pedestrians'];  
+let noun = ['badgers', 'sloths', 'robots', 'nibblers', 'rockets', 'squirrels', 'bananas', 'beavers', 'moths', 'tardigrades', 'crustaceans', 'unicorns', 'mammoths', 'mastodons', 'starfish', 'shamblers', 'shoggoths', 'gnomes', 'rabbits', 'boogalos', 'bugbears', 'ninjas', 'pedestrians'];
 
 function gruppSlump(studentList, header) {
+
+  $("#slump").modal("show");
 
   $("#leftBdy").empty().append("<h4>" + header + "</h4>").append("<ul class='slump-list'></ul>");
 
@@ -71,7 +121,7 @@ function gruppSlump(studentList, header) {
     slumpList = shuffle(studentList);
 
     $("#rightBdy").empty().append("<h4>Grupper</h4>").append("<ul class='slump-list'></ul>");
-    
+
     slumpList.forEach(element => {
         if (i == 1) {
           let pre = preUsed[getRandomInt(preUsed.length)];

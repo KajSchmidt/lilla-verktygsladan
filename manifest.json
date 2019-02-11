@@ -1,21 +1,34 @@
 {
-  "name": "Slumparen",
-  "version": "0.0.1",
+  "name": "Lilla verktygslådan",
+  "version": "1.0",
   "manifest_version": 2,
-  "description": "",
+  "description": "Verktyg för att slumpa grupper, elever m.m. från närvaroinformation i schoolsoft.",
   "background": {
     "scripts": [
       "background.js"
     ],
     "persistent": true
   },
-  "content_scripts": [ {
-    "js": [ "jquery.min.js", "collector.js", "injector.js"],
-    "matches": ["https://sms.schoolsoft.se/nti/jsp/teacher/right_teacher_lesson_status.jsp*"]
+  "content_scripts": [{
+    "matches": ["https://sms.schoolsoft.se/nti/jsp/teacher/right_teacher_lesson_status.jsp*"],
+    "js": [ "jquery-3.3.1.min.js", "bootstrap.bundle.min.js", "collector.js", "injector.js"]
+  },
+  {
+    "matches": ["https://webtools.itgonline.se/groupie/*"],
+    "js": [ "jquery-3.3.1.min.js", "paster.js"]
+  },
+  {
+    "matches": ["https://webtools.itgonline.se/selfie/*"],
+    "js": [ "jquery-3.3.1.min.js", "paster.js"]
   }],
+  "browser_action": {
+    "name": "Slumparen",
+    "default_popup": "popup.html"
+  },
   "permissions": [
     "https://*/*",
     "http://*/*",
-    "tabs"
+    "tabs",
+    "clipboardRead"
   ]
 }

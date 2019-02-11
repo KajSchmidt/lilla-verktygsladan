@@ -3,7 +3,7 @@
 
   chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
     if (tab[0].url.includes("/jsp/teacher/right_teacher_lesson_status.jsp?lesson") == false) {
-      $(".schoolsoft").removeClass("btn-primary");
+      $(".schoolsoft").removeClass("btn-primary btn-success");
       $(".schoolsoft").addClass("btn-secondary");
       $(".schoolsoft").addClass("disabled");
     }
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-
+/*
   $("#copyNames").click(function() {
     sendCommand("copynames");
   });
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
   $("#copyAttendingNames").click(function() {
     sendCommand("copyattendingnames");
   });
-
+*/
 
   $("#modalNames").click(function() {
     sendCommand("modalnames");

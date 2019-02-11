@@ -3,6 +3,10 @@
   "version": "1.0",
   "manifest_version": 2,
   "description": "Verktyg för att slumpa grupper, elever m.m. från närvaroinformation i schoolsoft.",
+  "author":"Kaj Schmidt, NTI-Gymnasiet Umeå, kaj.schmidt@ntig.se",
+  "icons": { "16": "img/logo-16.png",
+           "48": "img/logo-48.png",
+          "128": "img/logo-128.png" },
   "background": {
     "scripts": [
       "background.js"
@@ -22,8 +26,13 @@
     "js": [ "jquery-3.3.1.min.js", "paster.js"]
   }],
   "browser_action": {
-    "name": "Slumparen",
-    "default_popup": "popup.html"
+    "name": "Lilla verktygslådan",
+    "default_popup": "popup.html",
+    "default_title": "Lilla verktygslådan",
+    "default_icon": {
+      "16": "img/logo-16.png",
+      "32": "img/logo-32.png"
+    }
   },
   "permissions": [
     "https://*/*",

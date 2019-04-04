@@ -27,18 +27,37 @@ function collectNames(scope, format, target) {
 
 	$("#right>form>table.longlist>tbody").find('tr').slice(1, -1).each(function(){
 
-    if ($(this).children('td').slice(2,3).children('select').val() != 0 && scope == "attending") {
-      //Skip
+    if (scope == "all") {
+      let studentName = $(this).children('td').slice(1,2).text();
+      studentName = studentName.trim();
+      studentName = studentName.split(" ");
+      let firstName = studentName[studentName.length - 1];
+      let sureName = studentName[0];
+      studentList += firstName + " " + sureName + "\n";
+    }
+
+    else if ($(this).children('td').slice(2,3).children('select').val() == 0) {
+      //Attending
+      let studentName = $(this).children('td').slice(1,2).text();
+      studentName = studentName.trim();
+      studentName = studentName.split(" ");
+      let firstName = studentName[studentName.length - 1];
+      let sureName = studentName[0];
+      studentList += firstName + " " + sureName + "\n";
+    }
+
+    else if ($(this).children('td').slice(2,3).children('select').val() == 206) {
+      //Attending but late
+      let studentName = $(this).children('td').slice(1,2).text();
+      studentName = studentName.trim();
+      studentName = studentName.split(" ");
+      let firstName = studentName[studentName.length - 1];
+      let sureName = studentName[0];
+      studentList += firstName + " " + sureName + "\n";
     }
 
     else {
-
-        var studentName = $(this).children('td').slice(1,2).text();
-        studentName = studentName.trim();
-        studentName = studentName.split(" ");
-        var firstName = studentName[studentName.length - 1];
-        var sureName = studentName[0];
-        studentList += firstName + " " + sureName + "\n";
+      //Skip
     }
 
   });

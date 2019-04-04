@@ -14,7 +14,7 @@
     "persistent": true
   },
   "content_scripts": [{
-    "matches": ["https://sms.schoolsoft.se/nti/jsp/teacher/right_teacher_lesson_status.jsp*"],
+    "matches": ["https://*.schoolsoft.se/*/jsp/teacher/right_teacher_lesson_status.jsp*"],
     "js": [ "jquery-3.3.1.min.js", "bootstrap.bundle.min.js", "collector.js", "injector.js"]
   },
   {
@@ -35,8 +35,8 @@
     }
   },
   "permissions": [
-    "https://*/*",
-    "http://*/*",
+    "https://sms.schoolsoft.se/*",
+    "https://webtools.itgonline.se/*",
     "tabs",
     "clipboardRead"
   ]

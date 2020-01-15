@@ -1,6 +1,6 @@
 {
   "name": "Lilla verktygslådan",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 2,
   "description": "Verktyg för att slumpa grupper, elever m.m. från närvaroinformation i schoolsoft.",
   "author":"Kaj Schmidt, NTI-Gymnasiet Umeå, kaj.schmidt@ntig.se",

@@ -4,6 +4,8 @@
   $("#toClipBoard").css('position','absolute');
   $("#toClipBoard").css('top','-1000');
   $("#toClipBoard").css('left','-1000');
+  $("#toClipBoard").css('z-index','-1000');
+
 
 
   $("body").append("<style>"

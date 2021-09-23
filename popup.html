@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+      <meta charset="utf-8">
+      <script src="jquery-3.3.1.min.js"></script>
+      <script src="bootstrap.bundle.min.js"></script>
+      <link rel="stylesheet" href="bootstrap.min.css">
+
+      <script src="popup.js"></script>
+      <style>
+        body {
+          width:300px;
+          padding: 10px;
+        }
+
+        .btn-group {
+          margin-bottom:10px;
+        }
+
+        .btn, .btn>small{
+        
+          letter-spacing: 2px;
+          font-weight: 500;
+        }
+      </style>
+
+
+  </head>
+<body>
+
+
+<h6>ITG Webbtools</h6>
+<div class="btn-group btn-block btn-group-sm" role="group" aria-label="">
+  <button class="btn btn-primary" id="openGroupie">Groupie</button>
+  <button class="btn btn-primary schoolsoft" id="openGroupieCAll"><small>Alla</small></button>
+  <button class="btn btn-primary schoolsoft" id="openGroupieCAtt"><small>Närvarande</small></button>
+</div>
+
+<div class="btn-group btn-block btn-group-sm" role="group" aria-label="">
+  <button class="btn btn-primary" id="openSelfie">Selfie</button>
+  <button class="btn btn-primary schoolsoft" id="openSelfieCAll"><small>Alla</small></button>
+  <button class="btn btn-primary schoolsoft" id="openSelfieCAtt"><small>Närvarande</small></button>
+</div>
+
+<h6>Gruppslumparen</h6>
+<div class="btn-group btn-block btn-group-sm" role="group" aria-label="">
+  <button class="btn btn-success schoolsoft" id="modalNames"><small>Alla</small></button>
+  <button class="btn btn-success schoolsoft" id="modalAttendingNames"><small>Närvarande</small></button>
+</div>
+
+<!--
+<h6>Övrigt</h6>
+<div class="btn-group btn-block btn-group-sm" role="group" aria-label="">
+  <button class="btn btn-primary schoolsoft" id="copyNames">Kopiera Alla</button>
+  <button class="btn btn-primary schoolsoft" id="copyAttendingNames">Närvarande</button>
+</div>
+-->
+
+</body>
+</html>

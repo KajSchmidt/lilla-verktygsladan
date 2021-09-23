@@ -1,8 +1,12 @@
 (function() {
 
-  $("#right").prepend("<div class='row' id='btns'></div>");
-  $("#btns").append("<div class='col'><button class='button' onClick='collectNames()' data-toggle='modal' data-target='#slump'>Samla namn</button></div>");
-  $("#btns").append("<div class='col'><button class='button' onClick='collectAttendingNames()' data-toggle='modal' data-target='#slump'>Samla närvarande namn</button></div>");
+  $("body").append("<textarea id='toClipBoard'></textarea>");
+  $("#toClipBoard").css('position','absolute');
+  $("#toClipBoard").css('top','-1000');
+  $("#toClipBoard").css('left','-1000');
+  $("#toClipBoard").css('z-index','-1000');
+
+
 
   $("body").append("<style>"
         + ".row{display: flex; flex-wrap: wrap;}"
@@ -14,7 +18,9 @@
         + "</style>"
   );
 
-  $("body").append("<div class='modal' id='slump'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'>"  
+
+
+  $("body").append("<div class='modal' id='slump'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'>"
         + "<h3 class='modal-title'>Den fantastiska gruppslumparen</h5><button type='button' class='close' data-dismiss='modal'>&times;</button></div>"
         + "<div class='modal-body'><div class='row'>"
         + "<div id='leftBdy' class='col'><h4>Närvarande</h4></div>"

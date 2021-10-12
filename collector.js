@@ -107,6 +107,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+/*
 let adjective = [
   "ginormous",
   "explosive",
@@ -156,6 +157,7 @@ let noun = [
   "ninjas",
   "pedestrians",
 ];
+*/
 
 let adjective = [
   "gigantiska",

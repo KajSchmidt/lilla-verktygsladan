@@ -16,32 +16,32 @@
 document.addEventListener('DOMContentLoaded', function() {
 
   $("#openGroupie").click(function() {
-    chrome.tabs.create({ url: "https://webtools.itgonline.se/groupie/" });
+    chrome.tabs.create({ url: "https://www.toolie.se/groupie/" });
   });
 
   $("#openGroupieCAll").click(function() {
     sendCommand("copynames");
-    chrome.tabs.create({ url: "https://webtools.itgonline.se/groupie/#/?paste" });
+    chrome.tabs.create({ url: "https://www.toolie.se/groupie/#/?paste" });
   });
 
   $("#openGroupieCAtt").click(function() {
     sendCommand("copyattendingnames");
-    chrome.tabs.create({ url: "https://webtools.itgonline.se/groupie/#/?paste" });
+    chrome.tabs.create({ url: "https://www.toolie.se/groupie/#/?paste" });
   });
 
 
   $("#openSelfie").click(function() {
-    chrome.tabs.create({ url: "https://webtools.itgonline.se/selfie/" });
+    chrome.tabs.create({ url: "https://www.toolie.se/selfie/" });
   });
 
   $("#openSelfieCAll").click(function() {
     sendCommand("copynames");
-    chrome.tabs.create({ url: "https://webtools.itgonline.se/selfie/#/?paste" });
+    chrome.tabs.create({ url: "https://www.toolie.se/selfie/#/?paste" });
   });
 
   $("#openSelfieCAtt").click(function() {
     sendCommand("copyattendingnames");
-    chrome.tabs.create({ url: "https://webtools.itgonline.se/selfie/#/?paste" });
+    chrome.tabs.create({ url: "https://www.toolie.se/selfie/#/?paste" });
   });
 
 

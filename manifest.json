@@ -18,11 +18,11 @@
     "js": [ "jquery-3.3.1.min.js", "bootstrap.bundle.min.js", "collector.js", "injector.js"]
   },
   {
-    "matches": ["https://webtools.itgonline.se/groupie/*"],
+    "matches": ["https://www.toolie.se/groupie/*"],
     "js": [ "jquery-3.3.1.min.js", "paster.js"]
   },
   {
-    "matches": ["https://webtools.itgonline.se/selfie/*"],
+    "matches": ["https://www.toolie.se/selfie/*"],
     "js": [ "jquery-3.3.1.min.js", "paster.js"]
   }],
   "browser_action": {
@@ -36,7 +36,7 @@
   },
   "permissions": [
     "https://sms.schoolsoft.se/*",
-    "https://webtools.itgonline.se/*",
+    "https://www.toolie.se/*",
     "tabs",
     "clipboardRead"
   ]

@@ -2,6 +2,9 @@
 Namnslumpare som hämtar namn från Schoolsoft genom en chrome extenstion.
 
 ## Versioner
+### 1.3
+* ITGWebtools har flyttat till toolie.se
+
 ### 1.2
 * Korrigeringar för att hantera att det dolda kopieringsfältet syntes efter en omdesign av schoolsoft.
 

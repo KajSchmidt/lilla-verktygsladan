@@ -1,23 +1,17 @@
 {
   "name": "Lilla verktygslådan",
   "version": "2.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "Verktyg för att slumpa grupper, elever m.m. från närvaroinformation i schoolsoft.",
   "author":"Kaj Schmidt, NTI-Gymnasiet Umeå, kaj.schmidt@ntig.se",
   "icons": { "16": "img/logo-16.png",
            "48": "img/logo-48.png",
           "128": "img/logo-128.png" },
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
-  },
   "content_scripts": [{
     "matches": ["https://*.schoolsoft.se/*/jsp/teacher/right_teacher_lesson_status.jsp*"],
     "js": ["collector.js"]
   }],
-  "browser_action": {
+  "action": {
     "name": "Lilla verktygslådan",
     "default_popup": "popup.html",
     "default_title": "Lilla verktygslådan",
@@ -27,7 +21,9 @@
     }
   },
   "permissions": [
-    "https://sms.schoolsoft.se/*",
     "tabs"
+  ],
+  "host_permissions": [
+    "https://sms.schoolsoft.se/*"
   ]
 }

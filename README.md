@@ -2,6 +2,12 @@
 Namnslumpare som hämtar namn från Schoolsoft genom en chrome extenstion.
 
 ## Versioner
+### 2.0
+* Manifest v3
+* jQuery används inte längre
+* Clippboard används inte längre
+* Ny extern slumpare
+
 ### 1.3
 * ITGWebtools har flyttat till toolie.se
 

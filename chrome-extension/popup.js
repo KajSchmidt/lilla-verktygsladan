@@ -1,5 +1,4 @@
-
-(function() {
+/* (function() {
 
   chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
     if (tab[0].url.includes("/jsp/teacher/right_teacher_lesson_status.jsp?lesson") == false) {
@@ -45,15 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-/*
-  $("#copyNames").click(function() {
-    sendCommand("copynames");
-  });
 
-  $("#copyAttendingNames").click(function() {
-    sendCommand("copyattendingnames");
-  });
-*/
 
   $("#modalNames").click(function() {
     sendCommand("modalnames");
@@ -69,4 +60,4 @@ function sendCommand(command) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {action: command});
   });
-}
+} */

@@ -16,7 +16,21 @@
 }); */
 
 function collectNames() {
-  
+  let name_array = [];
+  let name_table = document.querySelectorAll("table.longlist > tbody > tr");
 
+  for (let i = 0; i < name_table.length; i++) {
+    if (i == 0) {continue} //Hoppar över första raden då den är rubrikerna
+    if (i == name_table.length-1) {continue} //Hoppar över sista raden då den är en sammanräkning
+    let new_name = [];
+    let name_row = name_table[i];
+    let name_cells = name_row.children;
+    new_name["name"] = name_cells[1].innerHTML.split(" ")[1]; //Plockar ut förnamnet ur "efternamn förnamn"
+    new_name["surname"] = name_cells[1].innerHTML.split(" ")[0]; //Plockar ut efternamnet ur "efternamn förnamn"
+    new_name["status"] = name_cells[2].firstChild.value; //Hämtar ut värdet ur select-elementet för närvaro
+    name_array.push(new_name);
+  }
+  
+  console.log(name_array);
 }
 

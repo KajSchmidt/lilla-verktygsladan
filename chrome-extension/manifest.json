@@ -28,7 +28,6 @@
   },
   "permissions": [
     "https://sms.schoolsoft.se/*",
-    "tabs",
-    "clipboardRead"
+    "tabs"
   ]
 }

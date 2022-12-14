@@ -1,10 +1,13 @@
-/* (function() {
+ (function() {
 
   chrome.tabs.query({active: true, currentWindow: true}, function (tab) {
     if (tab[0].url.includes("/jsp/teacher/right_teacher_lesson_status.jsp?lesson") == false) {
-      $(".schoolsoft").removeClass("btn-primary btn-success");
-      $(".schoolsoft").addClass("btn-secondary");
-      $(".schoolsoft").addClass("disabled");
+      let deactive_buttons = document.querySelectorAll(".schoolsoft_attending");
+      for (let button of deactive_buttons) {
+        button.classList.toggle("btn-primary");
+        button.classList.toggle("btn-secondary");
+        button.classList.toggle("disabled");
+      }
     }
   });
 
@@ -12,6 +15,7 @@
 
 })();
 
+/*
 document.addEventListener('DOMContentLoaded', function() {
 
   $("#openGroupie").click(function() {

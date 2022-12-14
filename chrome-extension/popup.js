@@ -11,57 +11,17 @@
     }
   });
 
-
+  let automatic_buttons = document.querySelectorAll("button[data-href]");
+  for (let button of automatic_buttons) {
+    let href = button.getAttribute("data-href");
+    button.onclick = () => chrome.tabs.create({ url: href });
+  }
 
 })();
-
-/*
-document.addEventListener('DOMContentLoaded', function() {
-
-  $("#openGroupie").click(function() {
-    chrome.tabs.create({ url: "https://www.toolie.se/groupie/" });
-  });
-
-  $("#openGroupieCAll").click(function() {
-    sendCommand("copynames");
-    chrome.tabs.create({ url: "https://www.toolie.se/groupie/#/?paste" });
-  });
-
-  $("#openGroupieCAtt").click(function() {
-    sendCommand("copyattendingnames");
-    chrome.tabs.create({ url: "https://www.toolie.se/groupie/#/?paste" });
-  });
-
-
-  $("#openSelfie").click(function() {
-    chrome.tabs.create({ url: "https://www.toolie.se/selfie/" });
-  });
-
-  $("#openSelfieCAll").click(function() {
-    sendCommand("copynames");
-    chrome.tabs.create({ url: "https://www.toolie.se/selfie/#/?paste" });
-  });
-
-  $("#openSelfieCAtt").click(function() {
-    sendCommand("copyattendingnames");
-    chrome.tabs.create({ url: "https://www.toolie.se/selfie/#/?paste" });
-  });
-
-
-
-
-  $("#modalNames").click(function() {
-    sendCommand("modalnames");
-  });
-
-  $("#modalAttendingNames").click(function() {
-    sendCommand("modalattendingnames");
-  });
-
-});
 
 function sendCommand(command) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {action: command});
   });
-} */
+}
+

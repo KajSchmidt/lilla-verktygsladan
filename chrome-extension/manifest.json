@@ -1,31 +1,17 @@
 {
   "name": "Lilla verktygslådan",
-  "version": "1.3",
-  "manifest_version": 2,
+  "version": "2.0",
+  "manifest_version": 3,
   "description": "Verktyg för att slumpa grupper, elever m.m. från närvaroinformation i schoolsoft.",
   "author":"Kaj Schmidt, NTI-Gymnasiet Umeå, kaj.schmidt@ntig.se",
   "icons": { "16": "img/logo-16.png",
            "48": "img/logo-48.png",
           "128": "img/logo-128.png" },
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
-  },
   "content_scripts": [{
     "matches": ["https://*.schoolsoft.se/*/jsp/teacher/right_teacher_lesson_status.jsp*"],
-    "js": [ "jquery-3.3.1.min.js", "bootstrap.bundle.min.js", "collector.js", "injector.js"]
-  },
-  {
-    "matches": ["https://www.toolie.se/groupie/*"],
-    "js": [ "jquery-3.3.1.min.js", "paster.js"]
-  },
-  {
-    "matches": ["https://www.toolie.se/selfie/*"],
-    "js": [ "jquery-3.3.1.min.js", "paster.js"]
+    "js": ["collector.js"]
   }],
-  "browser_action": {
+  "action": {
     "name": "Lilla verktygslådan",
     "default_popup": "popup.html",
     "default_title": "Lilla verktygslådan",
@@ -35,9 +21,9 @@
     }
   },
   "permissions": [
-    "https://sms.schoolsoft.se/*",
-    "https://www.toolie.se/*",
-    "tabs",
-    "clipboardRead"
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://sms.schoolsoft.se/*"
   ]
 }

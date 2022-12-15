@@ -11,7 +11,7 @@
     }
   });
 
-  let automatic_buttons = document.querySelectorAll("button[data-href]"); //Hämtar alla knappar som har custom params och genererar rätt onclick-event
+  let automatic_buttons = document.querySelectorAll("li[data-href]"); //Hämtar alla knappar som har custom params och genererar rätt onclick-event
   for (let button of automatic_buttons) {
     let setup = {
       "action": "openlink",

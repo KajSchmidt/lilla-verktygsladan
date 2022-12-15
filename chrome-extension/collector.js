@@ -1,14 +1,14 @@
 (function() {
-  chrome.runtime.onMessage.addListener((request) => {
+  chrome.runtime.onMessage.addListener((request) => { //Inväntar ett meddelande från popup-menyn
     if (request.action == "openlink") {
       let student_list = collectNames();
 
-      if (request.filter) {
+      if (request.filter) { //Filtrera bort alla med angiven status
         let filter_input = request.filter.split(",");
         student_list = student_list.filter(student => !filter_input.includes(student.status));
       }
 
-      if (request.method == "uri") { 
+      if (request.method == "uri") { //Använd URI/Get-parameter
         window.open(request.href + encodeURIComponent(JSON.stringify(student_list)), "_blank");
       }
     }
@@ -16,10 +16,10 @@
 })();
 
 function collectNames() {
-  let name_array = [];
-  let name_table = document.querySelectorAll("table.longlist > tbody > tr");
+  let name_array = []; //Array som kommer att populeras med namn och status på alla elever
+  let name_table = document.querySelectorAll("table.longlist > tbody > tr"); //Hämtar alla tr i tabellen över elever
 
-  for (let i = 0; i < name_table.length; i++) {
+  for (let i = 0; i < name_table.length; i++) { //Gå igenom alla tr
     if (i == 0) { continue; } //Hoppar över första raden då den är rubrikerna
     if (i == name_table.length-1) { continue; } //Hoppar över sista raden då den är en sammanräkning
 

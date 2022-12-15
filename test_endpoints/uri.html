@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="sv">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <pre></pre>
+        <script>
+            (function(){
+                let target = document.querySelector("pre");
+                let search_string = window.location.search;
+                console.log(search_string);
+                let search_object = new URLSearchParams(search_string);
+                console.log(search_object);
+                let decoded_object = decodeURIComponent(search_object.get("list"));
+                console.log(decoded_object);
+                let json_object = JSON.parse(decoded_object);
+                console.log(json_object);
+                target.innerText = JSON.stringify(json_object, undefined, 2);
+            })();
+        </script>
+    </body>
+</html>

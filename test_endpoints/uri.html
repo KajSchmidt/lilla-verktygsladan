@@ -21,9 +21,78 @@
         </div>
     </template>
     <script>
+        let adjective = ["gigantiska", "explosiva", "fantastiska", "rabiata", "hala", "festliga", "fanatiska", "blåa", "kosmiska", "bioniska", "cybernetiska", "drällande", "uråldriga", "bubblande", "löddriga", "drägglande", "giftiga", "galaktiska", "elektriska", "knasiga", "gasiga",
+        ];
+        let noun = ["grävlingar", "sengångare", "robotar", "gnagare", "mumsare", "raketer", "bananer", "bävrar", "malar", "trögkrypare", "skaldjur", "blötdjur", "enhörningar", "mammutar", "mastodonter", "sjöstjärnor", "shamblers", "shoggoths", "tomtar", "buggbjörnar", "ninjor", "fotgängare",
+        ];
+
+        const shuffle = (arr) => {
+            // let currentIndex = array.length, temporaryValue, randomIndex;
+
+            // while (0 !== currentIndex) {
+            //     // Pick a remaining element...
+            //     randomIndex = Math.floor(Math.random() * currentIndex);
+            //     currentIndex -= 1;
+
+            //     // And swap it with the current element.
+            //     temporaryValue = array[currentIndex];
+            //     array[currentIndex] = array[randomIndex];
+            //     array[randomIndex] = temporaryValue;
+            // }
+
+            // return array;
+            return arr.sort(() => .5 - Math.random())
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        const createGroups = (list, groupSize = false, numberOfGroups = false) => {
+            list = Object.assign([], list);
+            const groups = [];
+            const shuffledList = shuffle(list);
+            if (numberOfGroups) {
+                groupSize = Math.ceil(shuffledList.length / numberOfGroups);
+                for (let i = 0; i < numberOfGroups; i++) {
+                    groups.push(shuffledList.splice(0, groupSize));
+                }
+            } else {
+                while (shuffledList.length > 0) {
+                    groups.push(shuffledList.splice(0, groupSize));
+                }
+            }
+            return groups;
+        }
+
+        const createCard = (group) => {
+            const card = document.querySelector("#card").content.cloneNode(true);
+            const header = card.querySelector(".card__header h2");
+            const list = card.querySelector(".card__list");
+            header.textContent = `${adjective[getRandomInt(adjective.length)]} ${noun[getRandomInt(noun.length)]}`;
+            group.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = `${item.namn } ${item.efternamn}`;
+                list.appendChild(li);
+            });
+            return card;
+        }
+
+        const createCards = (groups) => {
+            const main = document.querySelector(".card__layout");
+            groups.forEach((group) => {
+                main.appendChild(createCard(group));
+            });
+        }
+
         (function () {
             const data = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("list")));
             console.log(data)
+            console.log(createGroups(data, 3));
+            console.log(createGroups(data, false, 3));
+            
+            createCards(createGroups(data, 3));
+
         })();
     </script>
 </body>

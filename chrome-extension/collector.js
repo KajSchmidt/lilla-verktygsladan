@@ -2,8 +2,14 @@
   chrome.runtime.onMessage.addListener((request) => {
     if (request.action == "openlink") {
       let student_list = collectNames();
+
+      if (request.filter) {
+        let filter_input = request.filter.split(",");
+        student_list = student_list.filter(student => !filter_input.includes(student.status));
+      }
+
       if (request.method == "uri") { 
-        window.open(request.href +"?list="+ encodeURIComponent(JSON.stringify(student_list)), "_blank");
+        window.open(request.href + encodeURIComponent(JSON.stringify(student_list)), "_blank");
       }
     }
   });

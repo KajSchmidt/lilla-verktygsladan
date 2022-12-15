@@ -1,23 +1,31 @@
 <!doctype html>
 <html lang="sv">
-    <head>
-        <meta charset="utf-8">
-    </head>
-    <body>
-        <pre></pre>
-        <script>
-            (function(){
-                let target = document.querySelector("pre");
-                let search_string = window.location.search;
-                console.log(search_string);
-                let search_object = new URLSearchParams(search_string);
-                console.log(search_object);
-                let decoded_object = decodeURIComponent(search_object.get("list"));
-                console.log(decoded_object);
-                let json_object = JSON.parse(decoded_object);
-                console.log(json_object);
-                target.innerText = JSON.stringify(json_object, undefined, 2);
-            })();
-        </script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupper</title>
+</head>
+
+<body>
+    <main class="card__layout"></main>
+    <template id="card">
+        <div class="card">
+            <div class="card__header">
+                <h2></h2>
+            </div>
+            <div class="card__body">
+                <ul class="card__list"></ul>
+            </div>
+        </div>
+    </template>
+    <script>
+        (function () {
+            const data = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("list")));
+            console.log(data)
+        })();
+    </script>
+</body>
+
 </html>

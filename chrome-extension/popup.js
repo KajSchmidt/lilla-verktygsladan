@@ -13,15 +13,21 @@
 
   let automatic_buttons = document.querySelectorAll("button[data-href]");
   for (let button of automatic_buttons) {
-    let href = button.getAttribute("data-href");
-    button.onclick = () => chrome.tabs.create({ url: href });
+    let setup = {
+      "action": "openlink",
+      "href": button.getAttribute("data-href")
+    }
+    if (button.getAttribute("data-method")) { setup.method = button.getAttribute("data-method"); }
+    if (button.getAttribute("data-filter")) { setup.filter = button.getAttribute("data-filter"); }
+
+    button.onclick = () => sendCommand(setup);
   }
 
 })();
 
-function sendCommand(command) {
+function sendCommand(setup) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {action: command});
+    chrome.tabs.sendMessage(tabs[0].id, setup);
   });
 }
 

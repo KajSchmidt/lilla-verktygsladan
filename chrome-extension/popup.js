@@ -1,8 +1,9 @@
  (function() { //Körs automatiskt varje gång popup-sidan visas
 
-  disableButtons()
-  assignButtons()
+  disableButtons();
+  assignButtons();
 
+  debugMode();
 
 
 })();
@@ -41,3 +42,14 @@ function disableButtons() { //Tar bort möjjligheten att klicka på knappar som 
   });
 }
 
+function debugMode() { //Strukturer för att kunna testa funktionalitet under utveckling
+
+  let debug_href = document.querySelector("#debug-href");
+  debug_href.onchange = () => {
+    let automatic_buttons = document.querySelectorAll("li[data-href]"); //Hämtar alla knappar som har custom params och genererar rätt onclick-event
+    for (let button of automatic_buttons) { 
+      button.setAttribute("data-href", debug_href.value);
+    }
+    assignButtons();
+  }
+}

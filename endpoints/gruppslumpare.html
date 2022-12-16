@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset@1.4.0/dist/reset.min.css"
+        integrity="sha256-F/jieNyjUBWCFEvO3J3FwSP2zHEcxoF6QAz0ppnZVME=" crossorigin="anonymous">
+    <style>
+        /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+        :root {
+            --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
+            --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
+            --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+            --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+            --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
+            --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+            --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+            --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.82rem);
+
+            --color-dark: #333;
+            --border-bottom-100: 1px solid var(--color-dark);
+        }
+
+        body {
+            font-size: var(--step-0);
+            font-family: sans-serif;
+            width: min(100ch, 100vw - var(--step-4));
+            margin-inline: auto;
+            margin-top: var(--step-5);
+            color: var(--color-dark);
+        }
+
+        .card__layout {
+            --min: 20rem;
+            --gap: var(--step-0);
+
+            display: grid;
+            grid-gap: var(--gap);
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
+        }
+
+        .card {
+            padding: var(--step--1);
+            border-radius: 2rem;
+        }
+
+        .card__header {
+            padding: var(--step--2);
+        }
+
+        .card__header>h2 {
+            text-transform: uppercase;
+            font-size: var(--step-0);
+        }
+
+        .card__list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card__list>li {
+            padding-left: var(--step--2);
+            /* border-bottom: var(--border-bottom-100); */
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card__layout"></main>
+    <template id="card">
+        <div class="card">
+            <div class="card__header">
+                <h2></h2>
+            </div>
+            <div class="card__body">
+                <ul class="card__list"></ul>
+            </div>
+        </div>
+    </template>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.6.1/randomColor.min.js"
+        integrity="sha512-vPeZ7JCboHcfpqSx5ZD+/jpEhS4JpXxfz9orSvAPPj0EKUVShU2tgy7XkU+oujBJKnWmu4hU7r9MMQNWPfXsYw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let adjective = ["gigantiska", "explosiva", "fantastiska", "rabiata", "hala", "festliga", "fanatiska", "blåa", "kosmiska", "bioniska", "cybernetiska", "drällande", "mullriga", "uråldriga", "bubblande", "löddriga", "drägglande", "giftiga", "galaktiska", "elektriska", "fjälliga", "frostiga", "slaskande", "knasiga", "gasiga",];
+        let noun = ["grävlingar", "nördar", "sengångare", "robotar", "gnagare", "mumsare", "raketer", "bananer", "bävrar", "malar", "trögkrypare", "skaldjur", "blötdjur", "enhörningar", "mammutar", "mastodonter", "sjöstjärnor", "shamblers", "shoggoths", "tomtar", "buggbjörnar", "ninjor", "fotgängare",];
+
+        const shuffle = (arr) => arr.sort(() => .5 - Math.random());
+
+        const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+
+        const createGroups = (list, groupSize = false, numberOfGroups = false) => {
+            list = Object.assign([], list);
+            const groups = [];
+            const shuffledList = shuffle(list);
+            if (numberOfGroups) {
+                groupSize = Math.ceil(shuffledList.length / numberOfGroups);
+                for (let i = 0; i < numberOfGroups; i++) {
+                    groups.push(shuffledList.splice(0, groupSize));
+                }
+            } else {
+                while (shuffledList.length > 0) {
+                    groups.push(shuffledList.splice(0, groupSize));
+                }
+            }
+            return groups;
+        }
+
+        const createCard = (group, hColor, groupNumber) => {
+            const card = document.querySelector("#card").content.cloneNode(true);
+            const header = card.querySelector(".card__header");
+            const h2 = header.querySelector("h2");
+            header.style.backgroundColor = hColor;
+            const list = card.querySelector(".card__list");
+            const adj = adjective.splice(getRandomInt(adjective.length), 1);
+            const n = noun.splice(getRandomInt(noun.length), 1);
+            h2.textContent = `${groupNumber ? groupNumber + '.' : ''} ${adj} ${n}`;
+            group.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = `${item.namn} ${item.efternamn}`;
+                li.style.borderBottom = `1px solid ${hColor}`;
+                list.appendChild(li);
+            });
+            return card;
+        }
+
+        const createCards = (groups, hColor, displayNumbers) => {
+            const main = document.querySelector(".card__layout");
+            groups.forEach((group, index) => {
+                main.appendChild(createCard(group, hColor,  displayNumbers ? index + 1 : false));
+            });
+        }
+
+        (function () {
+            const data = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("list")));
+            console.log(data)
+            console.log(createGroups(data, 3));
+            console.log(createGroups(data, false, 3));
+
+
+            color = randomColor({
+                luminosity: 'light',
+                hue: 'random',
+                count: 3
+            });
+            console.log(color)
+            createCards(createGroups(data, false, 12), color[2]);
+            document.querySelector("body").style.background = `linear-gradient(130deg, ${color[0]} 0%, ${color[1]} 100%)`;
+        })();
+    </script>
+</body>
+
+</html>

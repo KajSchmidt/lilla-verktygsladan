@@ -28,10 +28,12 @@
         body {
             font-size: var(--step-0);
             font-family: sans-serif;
+            color: var(--color-dark);
+        }
+
+        .container {
             width: min(100ch, 100vw - var(--step-4));
             margin-inline: auto;
-            margin-top: var(--step-5);
-            color: var(--color-dark);
         }
 
         .card__layout {
@@ -66,11 +68,71 @@
             padding-left: var(--step--2);
             /* border-bottom: var(--border-bottom-100); */
         }
+
+        .card__list-item--leader {
+            font-weight: bold;
+        }
+
+        .visually-hidden {
+            clip: rect(0 0 0 0);
+            clip-path: inset(50%);
+            height: 1px;
+            overflow: hidden;
+            position: absolute;
+            white-space: nowrap;
+            width: 1px;
+        }
+
+        .navbar {
+            padding: var(--step-0);
+        }
+
+        .navbar__inner {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input__group {
+            display: flex;
+            align-items: center;
+            gap: var(--step-0);
+        }
     </style>
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="navbar__inner container">
+            <button id="shuffle">
+                <span class="visually-hidden">Slumpa nya grupper</span>
+                <img src="assets/icons/replay_FILL0_wght400_GRAD0_opsz48.svg" alt="replay icon">
+            </button>
+            <div class="input__group">
+                <label for="group-size" class="visually-hidden">
+                    Antal i varje grupp
+                </label>
+                <input type="number" id="group-size" name="group-size" min="1" max="10" value="3">
+                <button id="gs-shuffle">
+                    <span class="visually-hidden">Visa nya grupper</span>
+                    <img src="assets/icons/person_FILL0_wght400_GRAD0_opsz48.svg" alt="person icons">
+                </button>
+            </div>
+            <div class="input__group">
+                <label for="number-of-groups" class="visually-hidden">
+                    Antal grupper
+                </label>
+                <input type="number" id="number-of-groups" name="number-of-groups" min="1" max="10" value="0">
+                <button id="nog-shuffle">
+                    <span class="visually-hidden">Visa nya grupper</span>
+                    <img src="assets/icons/groups_FILL0_wght400_GRAD0_opsz48.svg" alt="groups icon">
+                </button>
+            </div>
+        </div>
+    </nav>
     <main class="card__layout"></main>
+    <footer>
+
+    </footer>
     <template id="card">
         <div class="card">
             <div class="card__header">
@@ -109,7 +171,7 @@
             return groups;
         }
 
-        const createCard = (group, hColor, groupNumber) => {
+        const createCard = (group, hColor, groupNumber, groupLeader) => {
             const card = document.querySelector("#card").content.cloneNode(true);
             const header = card.querySelector(".card__header");
             const h2 = header.querySelector("h2");
@@ -121,16 +183,17 @@
             group.forEach((item) => {
                 const li = document.createElement("li");
                 li.textContent = `${item.namn} ${item.efternamn}`;
+                if (groupLeader) li.classList.add("card__list-item--leader");
                 li.style.borderBottom = `1px solid ${hColor}`;
                 list.appendChild(li);
             });
             return card;
         }
 
-        const createCards = (groups, hColor, displayNumbers) => {
+        const createCards = (groups, hColor, displayNumbers = false, groupLeaders = false) => {
             const main = document.querySelector(".card__layout");
             groups.forEach((group, index) => {
-                main.appendChild(createCard(group, hColor,  displayNumbers ? index + 1 : false));
+                main.appendChild(createCard(group, hColor, displayNumbers ? index + 1 : false, groupLeaders));
             });
         }
 
@@ -147,8 +210,25 @@
                 count: 3
             });
             console.log(color)
-            createCards(createGroups(data, false, 12), color[2]);
-            document.querySelector("body").style.background = `linear-gradient(130deg, ${color[0]} 0%, ${color[1]} 100%)`;
+            createCards(createGroups(data, false, 1), color[2]);
+            document.querySelector('body').style.background = `linear-gradient(130deg, ${color[0]} 0%, ${color[1]} 100%)`;
+            document.querySelector('nav').style.backgroundColor = color[2];
+
+            document.querySelector("#shuffle").addEventListener("click", () => {
+                document.querySelector(".card__layout").innerHTML = "";
+                createCards(createGroups(data, 3), color[2]);
+            });
+
+            document.querySelector("#gs-shuffle").addEventListener("click", () => {
+                document.querySelector(".card__layout").innerHTML = "";
+                createCards(createGroups(data, document.querySelector("#group-size").value), color[2]);
+            });
+
+            document.querySelector("#nog-shuffle").addEventListener("click", () => {
+                document.querySelector(".card__layout").innerHTML = "";
+                createCards(createGroups(data, false, document.querySelector("#number-of-groups").value), color[2]);
+            });
+
         })();
     </script>
 </body>

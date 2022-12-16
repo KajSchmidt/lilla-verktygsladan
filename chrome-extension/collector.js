@@ -27,8 +27,10 @@ function collectNames() {
     let new_name = {};
     let name_row = name_table[i];
     let name_cells = name_row.children;
-    new_name["namn"] = name_cells[1].textContent.split(" ")[1]; //Plockar ut förnamnet ur "efternamn förnamn"
-    new_name["efternamn"] = name_cells[1].textContent.split(" ")[0]; //Plockar ut efternamnet ur "efternamn förnamn"
+    let all_names = name_cells[1].textContent.split(" ");
+    let last_names = all_names.slice(0, all_names.length - 1); //Plockar ut efternamnet/en ur "efternamn förnamn"
+    new_name["namn"] = all_names.slice(-1)[0]; //Plockar ut förnamnet ur "efternamn förnamn"
+    new_name["efternamn"] = last_names.join(" "); //Kombinerar eventuella flera efternamn med mellanslag
     new_name["status"] = name_cells[2].firstChild.value; //Hämtar ut värdet ur select-elementet för närvaro
     name_array.push(new_name);
   }

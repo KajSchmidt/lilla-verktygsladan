@@ -1,0 +1,145 @@
+@layer reset, default, state;
+@import url(reset.min.css) layer(reset);
+
+/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+    --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.8rem);
+    --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1rem);
+    --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+    --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
+    --step-2: clamp(1.62rem, calc(1.5rem + 0.58vw), 1.95rem);
+    --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
+    --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
+    --step-5: clamp(2.8rem, calc(2.45rem + 1.77vw), 3.82rem);
+
+    --color-dark: #333;
+    --color-light: #f2f2f2;
+    --border-bottom-100: 1px solid var(--color-dark);
+}
+
+@layer default {
+    body {
+        font-size: var(--step-0);
+        font-family: sans-serif;
+        color: var(--color-dark);
+    }
+
+    .container {
+        width: min(100ch, 100vw - var(--step-4));
+        margin-inline: auto;
+    }
+
+    .card__layout {
+        --min: 20rem;
+        --gap: var(--step-0);
+
+        display: grid;
+        grid-gap: var(--gap);
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, var(--min)), 1fr)
+        );
+    }
+
+    .card {
+        padding: var(--step--1);
+        border-radius: 2rem;
+        width: min(50ch, 90%);
+        word-break: break-word;
+    }
+
+    .card__header {
+        padding: var(--step--2);
+    }
+
+    .card__header > h2 {
+        text-transform: uppercase;
+        font-size: var(--step-0);
+    }
+
+    .card__list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .card__list > li {
+        padding-left: var(--step--2);
+        /* border-bottom: var(--border-bottom-100); */
+    }
+
+    .card__list-item--leader {
+        font-weight: bold;
+    }
+
+    .visually-hidden {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .navbar {
+        padding: var(--step-0);
+    }
+
+    .navbar__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--step-0);
+    }
+
+    .input__group {
+        display: flex;
+        align-items: center;
+        gap: var(--step-0);
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0.25em 0.5em;
+
+        border: 2px solid var(--input-border);
+        border-radius: 4px;
+        color: var(--color-dark);
+        background-color: var(--color-light);
+
+        cursor: pointer;
+    }
+
+    .btn__icon {
+        width: var(--step-3);
+        height: var(--step-3);
+    }
+    
+    .btn__icon > svg {
+        flex-shrink: 0;
+
+        fill: currentColor;
+    }
+
+    .input {
+        width: 100%;
+        padding: 0.25em 0.5em;
+
+        background-color: var(--color-light);
+        border: 2px solid var(--input-border);
+        border-radius: 4px;
+
+        font-size: var(--step-0);
+        font-family: inherit;
+      }
+}
+
+@layer state {
+    .btn:not(.active) {
+        opacity: .5;
+    }
+}

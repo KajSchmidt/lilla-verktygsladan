@@ -6,125 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupper</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-css-reset@1.4.0/dist/reset.min.css"
-        integrity="sha256-F/jieNyjUBWCFEvO3J3FwSP2zHEcxoF6QAz0ppnZVME=" crossorigin="anonymous">
-    <style>
-        /* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-
-        :root {
-            --step--2: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.80rem);
-            --step--1: clamp(0.94rem, calc(0.92rem + 0.11vw), 1.00rem);
-            --step-0: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
-            --step-1: clamp(1.35rem, calc(1.28rem + 0.37vw), 1.56rem);
-            --step-2: clamp(1.62rem, calc(1.50rem + 0.58vw), 1.95rem);
-            --step-3: clamp(1.94rem, calc(1.77rem + 0.87vw), 2.44rem);
-            --step-4: clamp(2.33rem, calc(2.08rem + 1.25vw), 3.05rem);
-            --step-5: clamp(2.80rem, calc(2.45rem + 1.77vw), 3.82rem);
-
-            --color-dark: #333;
-            --border-bottom-100: 1px solid var(--color-dark);
-        }
-
-        body {
-            font-size: var(--step-0);
-            font-family: sans-serif;
-            color: var(--color-dark);
-        }
-
-        .container {
-            width: min(100ch, 100vw - var(--step-4));
-            margin-inline: auto;
-        }
-
-        .card__layout {
-            --min: 20rem;
-            --gap: var(--step-0);
-
-            display: grid;
-            grid-gap: var(--gap);
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--min)), 1fr));
-        }
-
-        .card {
-            padding: var(--step--1);
-            border-radius: 2rem;
-        }
-
-        .card__header {
-            padding: var(--step--2);
-        }
-
-        .card__header>h2 {
-            text-transform: uppercase;
-            font-size: var(--step-0);
-        }
-
-        .card__list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .card__list>li {
-            padding-left: var(--step--2);
-            /* border-bottom: var(--border-bottom-100); */
-        }
-
-        .card__list-item--leader {
-            font-weight: bold;
-        }
-
-        .visually-hidden {
-            clip: rect(0 0 0 0);
-            clip-path: inset(50%);
-            height: 1px;
-            overflow: hidden;
-            position: absolute;
-            white-space: nowrap;
-            width: 1px;
-        }
-
-        .navbar {
-            padding: var(--step-0);
-        }
-
-        .navbar__inner {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .input__group {
-            display: flex;
-            align-items: center;
-            gap: var(--step-0);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="navbar__inner container">
-            <button id="shuffle">
-                <span class="visually-hidden">Slumpa nya grupper</span>
-                <img src="assets/icons/replay_FILL0_wght400_GRAD0_opsz48.svg" alt="replay icon">
-            </button>
             <div class="input__group">
                 <label for="group-size" class="visually-hidden">
                     Antal i varje grupp
                 </label>
-                <input type="number" id="group-size" name="group-size" min="1" max="10" value="3">
-                <button id="gs-shuffle">
-                    <span class="visually-hidden">Visa nya grupper</span>
-                    <img src="assets/icons/person_FILL0_wght400_GRAD0_opsz48.svg" alt="person icons">
+                <input class="input" type="number" id="group-size" name="group-size" min="1" max="10" value="3">
+                <button id="gs-shuffle" class="btn btn__icon active">
+                    <span class="visually-hidden">Medlemmar per grupp</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M12 12q-1.65 0-2.825-1.175Q8 9.65 8 8q0-1.65 1.175-2.825Q10.35 4 12 4q1.65 0 2.825 1.175Q16 6.35 16 8q0 1.65-1.175 2.825Q13.65 12 12 12Zm-8 8v-2.8q0-.85.438-1.563.437-.712 1.162-1.087 1.55-.775 3.15-1.163Q10.35 13 12 13t3.25.387q1.6.388 3.15 1.163.725.375 1.162 1.087Q20 16.35 20 17.2V20Zm2-2h12v-.8q0-.275-.137-.5-.138-.225-.363-.35-1.35-.675-2.725-1.013Q13.4 15 12 15t-2.775.337Q7.85 15.675 6.5 16.35q-.225.125-.362.35-.138.225-.138.5Zm6-8q.825 0 1.413-.588Q14 8.825 14 8t-.587-1.412Q12.825 6 12 6q-.825 0-1.412.588Q10 7.175 10 8t.588 1.412Q11.175 10 12 10Zm0-2Zm0 10Z" />
+                    </svg>
                 </button>
             </div>
             <div class="input__group">
                 <label for="number-of-groups" class="visually-hidden">
                     Antal grupper
                 </label>
-                <input type="number" id="number-of-groups" name="number-of-groups" min="1" max="10" value="0">
-                <button id="nog-shuffle">
-                    <span class="visually-hidden">Visa nya grupper</span>
-                    <img src="assets/icons/groups_FILL0_wght400_GRAD0_opsz48.svg" alt="groups icon">
+                <input class="input" type="number" id="number-of-groups" name="number-of-groups" min="0" max="10"
+                    value="0">
+                <button id="nog-shuffle" class="btn btn__icon">
+                    <span class="visually-hidden">Antal grupper</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M0 18v-1.575q0-1.1 1.113-1.763Q2.225 14 4 14q.325 0 .625.012.3.013.575.063-.35.5-.525 1.075-.175.575-.175 1.225V18Zm6 0v-1.625q0-1.625 1.663-2.625 1.662-1 4.337-1 2.7 0 4.35 1 1.65 1 1.65 2.625V18Zm13.5 0v-1.625q0-.65-.163-1.225-.162-.575-.487-1.075.275-.05.563-.063Q19.7 14 20 14q1.8 0 2.9.662 1.1.663 1.1 1.763V18ZM12 14.75q-1.425 0-2.55.375-1.125.375-1.325.875H15.9q-.225-.5-1.338-.875Q13.45 14.75 12 14.75ZM4 13q-.825 0-1.412-.588Q2 11.825 2 11q0-.85.588-1.425Q3.175 9 4 9q.85 0 1.425.575Q6 10.15 6 11q0 .825-.575 1.412Q4.85 13 4 13Zm16 0q-.825 0-1.413-.588Q18 11.825 18 11q0-.85.587-1.425Q19.175 9 20 9q.85 0 1.425.575Q22 10.15 22 11q0 .825-.575 1.412Q20.85 13 20 13Zm-8-1q-1.25 0-2.125-.875T9 9q0-1.275.875-2.138Q10.75 6 12 6q1.275 0 2.137.862Q15 7.725 15 9q0 1.25-.863 2.125Q13.275 12 12 12Zm0-4q-.425 0-.712.287Q11 8.575 11 9t.288.712Q11.575 10 12 10t.713-.288Q13 9.425 13 9t-.287-.713Q12.425 8 12 8Zm0 8Zm0-7Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="input__group">
+                <button id="show-group-numbers" class="btn btn__icon">
+                    <span class="visually-hidden">Visa gruppnummer</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M5.5 15v-4.5H4V9h3v6ZM9 15v-2.5q0-.425.288-.713.287-.287.712-.287h2v-1H9V9h3.5q.425 0 .713.287.287.288.287.713v1.5q0 .425-.287.712-.288.288-.713.288h-2v1h3V15Zm6 0v-1.5h3v-1h-2v-1h2v-1h-3V9h3.5q.425 0 .712.287.288.288.288.713v4q0 .425-.288.712-.287.288-.712.288Z" />
+                    </svg>
+                </button>
+                <button id="shuffle" class="btn btn__icon active">
+                    <span class="visually-hidden">Slumpa nya grupper</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M12 22q-1.875 0-3.512-.712-1.638-.713-2.85-1.926-1.213-1.212-1.926-2.85Q3 14.875 3 13h2q0 2.925 2.038 4.962Q9.075 20 12 20t4.962-2.038Q19 15.925 19 13t-2.038-4.963Q14.925 6 12 6h-.15l1.55 1.55L12 9 8 5l4-4 1.4 1.45L11.85 4H12q1.875 0 3.513.713 1.637.712 2.85 1.924 1.212 1.213 1.925 2.85Q21 11.125 21 13t-.712 3.512q-.713 1.638-1.925 2.85-1.213 1.213-2.85 1.926Q13.875 22 12 22Z" />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -147,8 +75,8 @@
         integrity="sha512-vPeZ7JCboHcfpqSx5ZD+/jpEhS4JpXxfz9orSvAPPj0EKUVShU2tgy7XkU+oujBJKnWmu4hU7r9MMQNWPfXsYw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        let adjective = ["gigantiska", "explosiva", "fantastiska", "rabiata", "hala", "festliga", "fanatiska", "blåa", "kosmiska", "bioniska", "cybernetiska", "drällande", "mullriga", "uråldriga", "bubblande", "löddriga", "drägglande", "giftiga", "galaktiska", "elektriska", "fjälliga", "frostiga", "slaskande", "knasiga", "gasiga",];
-        let noun = ["grävlingar", "nördar", "sengångare", "robotar", "gnagare", "mumsare", "raketer", "bananer", "bävrar", "malar", "trögkrypare", "skaldjur", "blötdjur", "enhörningar", "mammutar", "mastodonter", "sjöstjärnor", "shamblers", "shoggoths", "tomtar", "buggbjörnar", "ninjor", "fotgängare",];
+        let adjectives = ['gigantiska', 'explosiva', 'fantastiska', 'rabiata', 'hala', 'festliga', 'fanatiska', 'blåa', 'kosmiska', 'bioniska', 'cybernetiska', 'drällande', 'mullriga', 'uråldriga', 'bubblande', 'löddriga', 'drägglande', 'giftiga', 'galaktiska', 'elektriska', 'fjälliga', 'frostiga', 'slaskande', 'knasiga', 'gasiga', 'idisslande'];
+        let nouns = ['grävlingar', 'nördar', 'sengångare', 'robotar', 'gnagare', 'mumsare', 'raketer', 'bananer', 'bävrar', 'malar', 'trögkrypare', 'skaldjur', 'blötdjur', 'enhörningar', 'mammutar', 'mastodonter', 'sjöstjärnor', 'shamblers', 'shoggoths', 'tomtar', 'buggbjörnar', 'ninjor', 'fotgängare', 'cyklister', 'söndagsseglare', 'hajar'];
 
         const shuffle = (arr) => arr.sort(() => .5 - Math.random());
 
@@ -171,19 +99,19 @@
             return groups;
         }
 
-        const createCard = (group, hColor, groupNumber, groupLeader) => {
-            const card = document.querySelector("#card").content.cloneNode(true);
-            const header = card.querySelector(".card__header");
-            const h2 = header.querySelector("h2");
+        const createCard = (adjList, nList, group, hColor, groupNumber, groupLeader) => {
+            const card = document.querySelector('#card').content.cloneNode(true);
+            const header = card.querySelector('.card__header');
+            const h2 = header.querySelector('h2');
             header.style.backgroundColor = hColor;
-            const list = card.querySelector(".card__list");
-            const adj = adjective.splice(getRandomInt(adjective.length), 1);
-            const n = noun.splice(getRandomInt(noun.length), 1);
+            const list = card.querySelector('.card__list');
+            const adj = adjList.splice(getRandomInt(adjList.length), 1);
+            const n = nList.splice(getRandomInt(nList.length), 1);
             h2.textContent = `${groupNumber ? groupNumber + '.' : ''} ${adj} ${n}`;
             group.forEach((item) => {
-                const li = document.createElement("li");
+                const li = document.createElement('li');
                 li.textContent = `${item.namn} ${item.efternamn}`;
-                if (groupLeader) li.classList.add("card__list-item--leader");
+                if (groupLeader) li.classList.add('card__list-item--leader');
                 li.style.borderBottom = `1px solid ${hColor}`;
                 list.appendChild(li);
             });
@@ -191,18 +119,17 @@
         }
 
         const createCards = (groups, hColor, displayNumbers = false, groupLeaders = false) => {
-            const main = document.querySelector(".card__layout");
+            const main = document.querySelector('.card__layout');
+            const adjCopy = Object.assign([], adjectives);
+            const nounsCopy = Object.assign([], nouns);
             groups.forEach((group, index) => {
-                main.appendChild(createCard(group, hColor, displayNumbers ? index + 1 : false, groupLeaders));
+                main.appendChild(createCard(adjCopy, nounsCopy, group, hColor, displayNumbers ? index + 1 : false, groupLeaders));
             });
         }
 
         (function () {
-            const data = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get("list")));
-            console.log(data)
-            console.log(createGroups(data, 3));
-            console.log(createGroups(data, false, 3));
-
+            const data = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get('list')));
+            let showGroupNumbers = false;
 
             color = randomColor({
                 luminosity: 'light',
@@ -214,20 +141,41 @@
             document.querySelector('body').style.background = `linear-gradient(130deg, ${color[0]} 0%, ${color[1]} 100%)`;
             document.querySelector('nav').style.backgroundColor = color[2];
 
-            document.querySelector("#shuffle").addEventListener("click", () => {
-                document.querySelector(".card__layout").innerHTML = "";
-                createCards(createGroups(data, 3), color[2]);
+            const nogInput = document.querySelector('#number-of-groups');
+            const nogButton = document.querySelector('#nog-shuffle');
+            nogInput.addEventListener('change', () => {
+                if (nogInput.value == 0) {
+                    nogButton.classList.remove('active');
+                } else {
+                    nogButton.classList.add('active');
+                }
+            })
+
+            document.querySelector('#shuffle').addEventListener('click', () => {
+                document.querySelector('.card__layout').innerHTML = '';
+                let gs = document.querySelector('#group-size').value || 3;
+                let nog = nogInput.value == 0 ? false : nogInput.value;
+                createCards(createGroups(data, gs, nog), color[2], showGroupNumbers);
             });
 
-            document.querySelector("#gs-shuffle").addEventListener("click", () => {
-                document.querySelector(".card__layout").innerHTML = "";
-                createCards(createGroups(data, document.querySelector("#group-size").value), color[2]);
+            document.querySelector('#gs-shuffle').addEventListener('click', () => {
+                document.querySelector('.card__layout').innerHTML = '';
+                createCards(createGroups(data, document.querySelector('#group-size').value), color[2], showGroupNumbers);
             });
 
-            document.querySelector("#nog-shuffle").addEventListener("click", () => {
-                document.querySelector(".card__layout").innerHTML = "";
-                createCards(createGroups(data, false, document.querySelector("#number-of-groups").value), color[2]);
+            nogButton.addEventListener('click', () => {
+                document.querySelector('.card__layout').innerHTML = '';
+                createCards(createGroups(data, false, document.querySelector('#number-of-groups').value), color[2], showGroupNumbers);
             });
+
+            const showGroupNumbersButton = document.querySelector('#show-group-numbers');
+
+            showGroupNumbersButton.addEventListener('click', () => {
+                showGroupNumbers = !showGroupNumbers;
+                showGroupNumbersButton.classList.toggle('active');
+            });
+
+
 
         })();
     </script>

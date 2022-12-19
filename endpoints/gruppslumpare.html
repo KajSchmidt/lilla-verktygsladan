@@ -40,6 +40,13 @@
                 </button>
             </div>
             <div class="input__group">
+                <button id="show-group-leaders" class="btn btn__icon">
+                    <span class="visually-hidden">Visa gruppledare</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M17 15q-1.05 0-1.775-.725-.725-.725-.725-1.775 0-1.05.725-1.775Q15.95 10 17 10q1.05 0 1.775.725.725.725.725 1.775 0 1.05-.725 1.775Q18.05 15 17 15Zm-5 5v-1.4q0-.6.312-1.112.313-.513.888-.738.9-.375 1.863-.562Q16.025 16 17 16q.975 0 1.938.188.962.187 1.862.562.575.225.888.738Q22 18 22 18.6V20Zm-2-8q-1.65 0-2.825-1.175Q6 9.65 6 8q0-1.65 1.175-2.825Q8.35 4 10 4q1.65 0 2.825 1.175Q14 6.35 14 8q0 1.65-1.175 2.825Q11.65 12 10 12Zm0-4ZM2 20v-2.8q0-.85.425-1.563.425-.712 1.175-1.087 1.5-.75 3.113-1.15Q8.325 13 10 13q.875 0 1.75.15t1.75.35l-.85.85-.85.85q-.45-.125-.9-.163Q10.45 15 10 15q-1.45 0-2.837.35-1.388.35-2.663 1-.25.125-.375.35-.125.225-.125.5v.8h6v2Zm8-2Zm0-8q.825 0 1.413-.588Q12 8.825 12 8t-.587-1.412Q10.825 6 10 6q-.825 0-1.412.588Q8 7.175 8 8t.588 1.412Q9.175 10 10 10Z" />
+                    </svg>
+                </button>
                 <button id="show-group-numbers" class="btn btn__icon">
                     <span class="visually-hidden">Visa gruppnummer</span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
@@ -75,8 +82,8 @@
         integrity="sha512-vPeZ7JCboHcfpqSx5ZD+/jpEhS4JpXxfz9orSvAPPj0EKUVShU2tgy7XkU+oujBJKnWmu4hU7r9MMQNWPfXsYw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        let adjectives = ['gigantiska', 'explosiva', 'fantastiska', 'rabiata', 'hala', 'festliga', 'fanatiska', 'blåa', 'kosmiska', 'bioniska', 'cybernetiska', 'drällande', 'mullriga', 'uråldriga', 'bubblande', 'löddriga', 'drägglande', 'giftiga', 'galaktiska', 'elektriska', 'fjälliga', 'frostiga', 'slaskande', 'knasiga', 'gasiga', 'idisslande'];
-        let nouns = ['grävlingar', 'nördar', 'sengångare', 'robotar', 'gnagare', 'mumsare', 'raketer', 'bananer', 'bävrar', 'malar', 'trögkrypare', 'skaldjur', 'blötdjur', 'enhörningar', 'mammutar', 'mastodonter', 'sjöstjärnor', 'shamblers', 'shoggoths', 'tomtar', 'buggbjörnar', 'ninjor', 'fotgängare', 'cyklister', 'söndagsseglare', 'hajar'];
+        let adjectives = ['gigantiska', 'explosiva', 'fantastiska', 'saltade', 'gulliga', 'rabiata', 'hala', 'festliga', 'fanatiska', 'blåa', 'kosmiska', 'bioniska', 'cybernetiska', 'drällande', 'mullriga', 'uråldriga', 'bubblande', 'löddriga', 'drägglande', 'giftiga', 'galaktiska', 'elektriska', 'fjälliga', 'frostiga', 'slaskande', 'knasiga', 'gasiga', 'idisslande'];
+        let nouns = ['grävlingar', 'nördar', 'sengångare', 'robotar', 'gnagare', 'bläckfiskar', 'tångräkor', 'mumsare', 'raketer', 'bananer', 'bävrar', 'malar', 'trögkrypare', 'skaldjur', 'blötdjur', 'enhörningar', 'mammutar', 'mastodonter', 'sjöstjärnor', 'shamblers', 'shoggoths', 'tomtar', 'buggbjörnar', 'ninjor', 'fotgängare', 'cyklister', 'söndagsseglare', 'hajar'];
 
         const shuffle = (arr) => arr.sort(() => .5 - Math.random());
 
@@ -108,10 +115,10 @@
             const adj = adjList.splice(getRandomInt(adjList.length), 1);
             const n = nList.splice(getRandomInt(nList.length), 1);
             h2.textContent = `${groupNumber ? groupNumber + '.' : ''} ${adj} ${n}`;
-            group.forEach((item) => {
+            group.forEach((item, index) => {
                 const li = document.createElement('li');
                 li.textContent = `${item.namn} ${item.efternamn}`;
-                if (groupLeader) li.classList.add('card__list-item--leader');
+                if (groupLeader && index === 0) li.classList.add('card__list-item--leader');
                 li.style.borderBottom = `1px solid ${hColor}`;
                 list.appendChild(li);
             });
@@ -130,24 +137,29 @@
         (function () {
             const data = JSON.parse(decodeURIComponent(new URLSearchParams(window.location.search).get('list')));
             let showGroupNumbers = false;
+            let showGroupLeaders = false;
 
             color = randomColor({
                 luminosity: 'light',
                 hue: 'random',
                 count: 3
             });
-            console.log(color)
+
             createCards(createGroups(data, false, 1), color[2]);
             document.querySelector('body').style.background = `linear-gradient(130deg, ${color[0]} 0%, ${color[1]} 100%)`;
             document.querySelector('nav').style.backgroundColor = color[2];
 
             const nogInput = document.querySelector('#number-of-groups');
             const nogButton = document.querySelector('#nog-shuffle');
+            const gsButton = document.querySelector('#gs-shuffle');
+
             nogInput.addEventListener('change', () => {
                 if (nogInput.value == 0) {
                     nogButton.classList.remove('active');
+                    gsButton.classList.add('active');
                 } else {
                     nogButton.classList.add('active');
+                    gsButton.classList.remove('active');
                 }
             })
 
@@ -155,17 +167,22 @@
                 document.querySelector('.card__layout').innerHTML = '';
                 let gs = document.querySelector('#group-size').value || 3;
                 let nog = nogInput.value == 0 ? false : nogInput.value;
-                createCards(createGroups(data, gs, nog), color[2], showGroupNumbers);
+                createCards(createGroups(data, gs, nog), color[2], showGroupNumbers, showGroupLeaders);
             });
 
-            document.querySelector('#gs-shuffle').addEventListener('click', () => {
+            gsButton.addEventListener('click', () => {
                 document.querySelector('.card__layout').innerHTML = '';
-                createCards(createGroups(data, document.querySelector('#group-size').value), color[2], showGroupNumbers);
+                gsButton.classList.add('active');
+                nogButton.classList.remove('active');
+                createCards(createGroups(data, document.querySelector('#group-size').value), color[2], showGroupNumbers, showGroupLeaders);
             });
 
             nogButton.addEventListener('click', () => {
+                if (nogInput.value == 0) return;
                 document.querySelector('.card__layout').innerHTML = '';
-                createCards(createGroups(data, false, document.querySelector('#number-of-groups').value), color[2], showGroupNumbers);
+                nogButton.classList.add('active');
+                gsButton.classList.remove('active');
+                createCards(createGroups(data, false, nogInput.value), color[2], showGroupNumbers, showGroupLeaders);
             });
 
             const showGroupNumbersButton = document.querySelector('#show-group-numbers');
@@ -175,8 +192,11 @@
                 showGroupNumbersButton.classList.toggle('active');
             });
 
-
-
+            const groupLeaderButton = document.querySelector('#show-group-leaders');
+            groupLeaderButton.addEventListener('click', () => {
+                showGroupLeaders = !showGroupLeaders;
+                groupLeaderButton.classList.toggle('active');
+            });
         })();
     </script>
 </body>

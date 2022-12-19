@@ -16,6 +16,8 @@
     --color-dark: #333;
     --color-light: #f2f2f2;
     --border-bottom-100: 1px solid var(--color-dark);
+
+    --active-border: solid 1px rgba(51, 51, 51, 0.2);
 }
 
 @layer default {
@@ -106,7 +108,7 @@
 
         padding: 0.25em 0.5em;
 
-        border: 2px solid var(--input-border);
+        border: var(--active-border);
         border-radius: 4px;
         color: var(--color-dark);
         background-color: var(--color-light);
@@ -130,7 +132,7 @@
         padding: 0.25em 0.5em;
 
         background-color: var(--color-light);
-        border: 2px solid var(--input-border);
+        border: var(--active-border);
         border-radius: 4px;
 
         font-size: var(--step-0);
@@ -139,7 +141,13 @@
 }
 
 @layer state {
+    .btn:hover {
+        transform: scale(1.1);
+    }
     .btn:not(.active) {
-        opacity: .5;
+        opacity: .6;
+    }
+    .btn:not(.active):hover {
+        opacity: .9;
     }
 }

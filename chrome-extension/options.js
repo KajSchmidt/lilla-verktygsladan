@@ -25,8 +25,8 @@
     else {
       chrome.storage.sync.remove(input.id); //Tomma input resulterar i att key raderas
     }
-    
-    
+    document.querySelector("#change_saved").classList.remove("d-none");
+    document.querySelector("#change_not_saved").classList.add("d-none");
   }
 
 
@@ -35,6 +35,10 @@
     for (let input of inputs) {
       if (options[input.id] && input.type == "checkbox") { input.checked = options[input.id] } //Om det är en checkbox så sätt checked true/false
       else if (options[input.id]) { input.value = options[input.id] } //Alla input utom checkbox ändrar value
-      input.onchange = () => saveOption(input); //onchange event som sparar förändringar automatiskt
+      input.oninput = () => { 
+        document.querySelector("#change_saved").classList.add("d-none");
+        document.querySelector("#change_not_saved").classList.remove("d-none");
+       };
+      input.onchange = () => { saveOption(input) }; //onchange event som sparar förändringar automatiskt
     }
   }

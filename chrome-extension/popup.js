@@ -1,8 +1,8 @@
  (function() { //Körs automatiskt varje gång popup-sidan visas
 
-  chrome.storage.sync.get().then((options) => {
+  chrome.storage.sync.get().then((options) => { //hämta sparade options
 
-    if (!options["init"]) { options = {"tool_gruppslump": true} }
+    if (!options["init"]) { options = {"tool_gruppslump": true} } //Om det inte finns några options så ladda defaults
 
     disableButtons(options);
     assignButtons(options);

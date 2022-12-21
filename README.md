@@ -9,6 +9,8 @@ Namnslumpare som hämtar namn från Schoolsoft genom en chrome extenstion.
 * jQuery används inte längre
 * Clippboard används inte längre
 * Ny extern slumpare
+* Ingen intern slumpare
+* options-sida
 
 ### 1.3
 

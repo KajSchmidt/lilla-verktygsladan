@@ -17,7 +17,7 @@ function sendCommand(setup) { //Skickar instruktioner till content-script
 }
 
 function assignButtons(options) { //Kopplar onclick-events till relevanta knappar utifrån data-parametrar i HTML-koden
-  let automatic_buttons = document.querySelectorAll("li[data-href]"); //Hämtar alla knappar som har custom params och genererar rätt onclick-event
+  let automatic_buttons = document.querySelectorAll("button[data-href]"); //Hämtar alla knappar som har custom params och genererar rätt onclick-event
   for (let button of automatic_buttons) {
     if (button.classList.contains("disabled")) { continue; } //Strunta i knappar som ändå inte fungerar på den aktuella sidan
     let href = button.getAttribute("data-href");

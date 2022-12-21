@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+      <meta charset="utf-8">
+      
+      <link rel="stylesheet" href="bootstrap.min.css">
+      <style>
+        .card {
+            width: 40vw;
+            margin: 30px auto 30px auto;
+        }
+      </style>
+  </head>
+<body>
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">
+            Lilla Verktygslådan
+        </h2>
+    </div>
+    <div class="accordion accordion-flush" id="options-page">
+
+      <!--
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="settings-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#settings-body" aria-expanded="false" aria-controls="settings-body">
+              Inställningar
+            </button>
+          </h2>
+          <div id="settings-body" class="accordion-collapse collapse" aria-labelledby="settings-header" data-bs-parent="#options-page">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+          </div>
+        </div>
+-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="tools-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tools-body" aria-expanded="false" aria-controls="tools-body">
+                Verktyg
+              </button>
+            </h2>
+            <div id="tools-body" class="accordion-collapse collapse" aria-labelledby="tools-header" data-bs-parent="#options-page">
+              <div class="accordion-body">
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="tool_gruppslump">
+                    <label class="form-check-label" for="tool_gruppslump">Gruppslumparen</label>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="tool_elevslump">
+                    <label class="form-check-label" for="tool_elevslump">Elevslumparen</label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+<!--
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="functions-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#functions-body" aria-expanded="false" aria-controls="functions-body">
+                Funktioner
+              </button>
+            </h2>
+            <div id="functions-body" class="accordion-collapse collapse" aria-labelledby="functions-header" data-bs-parent="#functions-page">
+              <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+            </div>
+        </div>
+-->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="debug-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#debug-body" aria-expanded="false" aria-controls="debug-body">
+                Utvecklarfunktioner
+              </button>
+            </h2>
+            <div id="debug-body" class="accordion-collapse collapse" aria-labelledby="debug-header" data-bs-parent="#debug-page">
+              <div class="accordion-body">
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="debug_mode">
+                    <label class="form-check-label" for="debug_mode">
+                      Utvecklarläge
+                    </label>
+                    <span class="form-text">Aktiverar/deaktiverar alla utvecklarfunktioner.</span>
+                </div>
+                
+
+                <div class="mb-3">
+                    <label for="debug_href" class="form-label">Test URL</label>
+                    <input type="text" class="form-control" id="debug_href" placeholder="https://127.0.0.1:5500?list=">
+                    <span class="form-text">Ange en annan endpoint för att skicka data till, kommer att användas på alla länkar.</span>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="card-body">
+      </div>
+</div>
+
+
+<script src="bootstrap.min.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

@@ -22,8 +22,9 @@
       "128": "img/logo-128.png"
     }
   },
+  "options_page": "options.html",
   "permissions": [
-    "tabs"
+    "tabs","storage"
   ],
   "host_permissions": [
     "https://sms.schoolsoft.se/*"

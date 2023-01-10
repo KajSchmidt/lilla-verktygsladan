@@ -36,12 +36,14 @@ function assignButtons(options) { //Kopplar onclick-events till relevanta knappa
 
 function disableButtons(options) { //Tar bort möjjligheten att klicka på knappar som inte har någon funktion på den aktuella sidan
   chrome.tabs.query({active: true, currentWindow: true}, function (tab) { //Kontrollerar om du faktiskt är på en relevant sida, annars deactiveras knapparna
-    if (tab[0].url.includes("/jsp/teacher/right_teacher_lesson_status.jsp?lesson") == false) {
-      let deactive_buttons = document.querySelectorAll(".schoolsoft_attending");
-      for (let button of deactive_buttons) {
-        button.classList.toggle("btn-primary");
-        button.classList.toggle("btn-secondary");
-        button.classList.toggle("disabled");
+    let buttons = document.querySelectorAll("button");
+    for (let button of buttons) {
+      if (button.getAttribute("data-checkfor")) {
+        if (!tab[0].url.includes(button.getAttribute("data-checkfor"))) {
+          button.classList.toggle("btn-primary");
+          button.classList.toggle("btn-secondary");
+          button.classList.toggle("disabled");
+        }
       }
     }
   });

@@ -6,33 +6,84 @@
       <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="bootstrap-icons-1.10.2/bootstrap-icons.css">
       <style>
+        @font-face {
+          font-family: TilliumWebbSemiBold;
+          src: url(Titillium_Web/TitilliumWeb-SemiBold.ttf);
+        }
+
+        @font-face {
+          font-family: TilliumWebbRegular;
+          src: url(Titillium_Web/TitilliumWeb-Regular.ttf);
+        }
+
         body {
           width: 300px;
+          font-family: TilliumWebbRegular;
         }
 
-        .icon {
-          width: 2em;
+        .card, .card-header {
+          border-radius: 0 !important;
+        }
+
+        .card-header {
+          font-size: 0.7em;
+          font-family: TilliumWebbSemiBold;
           height: 2em;
-          font-size: 1em;
-          padding: 0;
-          vertical-align:middle;
+          padding-top: 0.2em;
+          background-image: url("img/header.png");
+          background-size: cover;
         }
 
-        .icon > i {
-          vertical-align:middle;
+        .card-footer {
+          font-size: 0.6em;
+          height: 2em;
+          padding-top: 0.2em;
+          text-align: end;
+          background-image: url("img/footer.png");
+          background-size: cover;
         }
-      
 
+        .card-footer > i {
+          margin-left: 5px;
+        }
+
+
+        /* NTIG-specifika färgscheman */
+
+        .bg-magenta {
+          color: #dd0890;
+        }
+
+        .text-bg-magenta, .btn-magenta {
+          background-color: #dd0890;
+          color: #ffffff;
+        }
+
+        .btn-magenta:active, .btn-magenta:hover, .btn-magenta:focus {
+          background-color: #850456 !important;
+          color: #ffffff !important;
+        }
+    
       </style>
   </head>
 <body>
 
-<ul class="list-group list-group-flush">
-    <li class="list-group-item list-group-item-primary active text-center"><i class="bi bi-tools"></i> Lilla Verktygslådan</li>
-    <button class="schoolsoft_attending list-group-item-primary  list-group-item list-group-item-action" data-checkfor="/jsp/teacher/right_teacher_lesson_status.jsp?lesson" data-href="https://kajschmidt.github.io/lilla-verktygsladan/endpoints/gruppslumpare.html?list=" data-method="uri" data-filter="1,9">
-      <span class="icon badge bg-secondary rounded-circle text-center"><i class="bi bi-people-fill"></i></span> Slumpa lite grupper</button>
-</ul>
+<div class="card">
+  <div class="card-header text-bg-magenta">
+    <i class="bi bi-tools"></i> Lilla Verktygslådan
+  </div>
+  <div class="card-body">
 
+    <ul class="list-group list-group-flush">
+      <button class="btn btn-magenta" data-checkfor="/jsp/teacher/right_teacher_lesson_status.jsp?lesson" data-href="https://kajschmidt.github.io/lilla-verktygsladan/endpoints/gruppslumpare.html?list=" data-method="uri" data-filter="1,9">
+        <i class="bi bi-people-fill"></i> Slumpa grupper</button>
+  </ul>
+
+  </div>
+  <div class="card-footer">
+    <a href="https://github.com/KajSchmidt/lilla-verktygsladan"  class="link-dark" target="_blank"><i class="bi bi-github"></i></a>
+  </div>
+</div>
 
 <script src="popup.js"></script>
 </body>

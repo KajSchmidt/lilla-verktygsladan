@@ -16,6 +16,26 @@ function sendCommand(setup) { //Skickar instruktioner till content-script
   });
 }
 
+function openOptions() {
+  chrome.runtime.openOptionsPage();
+}
+
+function disableButtons(options) { //Tar bort möjjligheten att klicka på knappar som inte har någon funktion på den aktuella sidan
+  chrome.tabs.query({active: true, currentWindow: true}, function (tab) { //Kontrollerar om du faktiskt är på en relevant sida, annars deactiveras knapparna
+    let buttons = document.querySelectorAll("button");
+    for (let button of buttons) {
+      if (button.getAttribute("data-checkfor")) {
+        if (!tab[0].url.includes(button.getAttribute("data-checkfor"))) {
+          button.classList.toggle("btn-magenta");
+          button.classList.toggle("btn-secondary");
+          button.classList.toggle("disabled");
+        }
+      }
+    }
+  });
+}
+
+
 function assignButtons(options) { //Kopplar onclick-events till relevanta knappar utifrån data-parametrar i HTML-koden
   let automatic_buttons = document.querySelectorAll("button[data-href]"); //Hämtar alla knappar som har custom params och genererar rätt onclick-event
   for (let button of automatic_buttons) {
@@ -32,19 +52,4 @@ function assignButtons(options) { //Kopplar onclick-events till relevanta knappa
 
     button.onclick = () => sendCommand(setup);
   }
-}
-
-function disableButtons(options) { //Tar bort möjjligheten att klicka på knappar som inte har någon funktion på den aktuella sidan
-  chrome.tabs.query({active: true, currentWindow: true}, function (tab) { //Kontrollerar om du faktiskt är på en relevant sida, annars deactiveras knapparna
-    let buttons = document.querySelectorAll("button");
-    for (let button of buttons) {
-      if (button.getAttribute("data-checkfor")) {
-        if (!tab[0].url.includes(button.getAttribute("data-checkfor"))) {
-          button.classList.toggle("btn-primary");
-          button.classList.toggle("btn-secondary");
-          button.classList.toggle("disabled");
-        }
-      }
-    }
-  });
 }

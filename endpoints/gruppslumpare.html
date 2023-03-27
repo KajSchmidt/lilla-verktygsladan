@@ -94,9 +94,12 @@
             const groups = [];
             const shuffledList = shuffle(list);
             if (numberOfGroups) {
-                groupSize = Math.floor(shuffledList.length / numberOfGroups);
+                groupSize = Math.floor(shuffledList.length / parseInt(numberOfGroups));
                 for (let i = 0; i < numberOfGroups; i++) {
                     groups.push(shuffledList.splice(0, groupSize));
+                }
+                while (shuffledList.length > 0) {
+                    groups[getRandomInt(groups.length)].push(shuffledList.splice(0, 1)[0]);
                 }
             } else {
                 while (shuffledList.length > 0) {

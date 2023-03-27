@@ -94,7 +94,7 @@
             const groups = [];
             const shuffledList = shuffle(list);
             if (numberOfGroups) {
-                groupSize = Math.ceil(shuffledList.length / numberOfGroups);
+                groupSize = Math.floor(shuffledList.length / numberOfGroups);
                 for (let i = 0; i < numberOfGroups; i++) {
                     groups.push(shuffledList.splice(0, groupSize));
                 }

@@ -10,6 +10,9 @@
   "content_scripts": [{
     "matches": ["https://*.schoolsoft.se/*/jsp/teacher/right_teacher_lesson_status.jsp*"],
     "js": ["name_collector.js"]
+  },{
+    "matches": ["https://sms.schoolsoft.se/nti/jsp/teacher/right_teacher_mentor_student_card.jsp*"],
+    "js": ["check_age.js"]
   }],
   "action": {
     "name": "Lilla verktygslådan",

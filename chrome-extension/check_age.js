@@ -6,7 +6,10 @@
         let birth_string = "20" + age_row_age.innerText.substring(0,2) + "-" + age_row_age.innerText.substring(2,4) + "-" + age_row_age.innerText.substring(4,6); //Formaterar YYYY-MM--DD
         let birth_date = new Date(birth_string);
         let age_diff = new Date(Date.now() - birth_date.getTime());  //Räknar ut skillnad i timestamp-format
-        let age = age_diff.getFullYear() - 1970; //Räknar om skillnaden till år
-        console.log(age);
+        let age_year = age_diff.getFullYear() - 1970; //Räknar om skillnaden till år
+
+        let age_span = document.createElement("span");
+        age_span.innerText = " (Ålder: " + age_year + ")";
+        age_row_age.append(age_span);
     }
 })();

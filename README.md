@@ -3,6 +3,10 @@ Namnslumpare som hämtar namn från Schoolsoft genom en chrome extenstion.
 
 ## Versioner
 
+### 2.1
+
+* Räknar ut ålder på elevkort
+
 ### 2.0
 
 * Manifest v3

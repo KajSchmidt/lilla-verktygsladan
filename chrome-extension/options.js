@@ -3,7 +3,10 @@
 
   chrome.storage.sync.get().then((options) => {
     if (!options["init"]) { //Om det inte finns några options så ladda defaults
-      options = {"tool_gruppslump": true};
+      options = {
+        "tool_gruppslump": true,
+        "tool_colorcode_stats":true
+      };
       chrome.storage.sync.set({"init" : true, "tool_gruppslup" : true});
     }
     bindLoadInputs(options);

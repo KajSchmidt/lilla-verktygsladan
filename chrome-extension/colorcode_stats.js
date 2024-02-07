@@ -1,16 +1,20 @@
-﻿(function() { //Körs automatiskt varje gång popup-sidan visas
+﻿(function() { 
 
     chrome.storage.sync.get().then((options) => { //hämta sparade options
   
-      if (!options["init"]) { options = {"tool_colorcode": true} } //Om det inte finns några options så ladda defaults
-    });
+      if (!options["init"]) { options = {"tool_colorcode_stats": true} } //Om det inte finns några options så ladda defaults
 
-    window.addEventListener("load", loadData);
-    
+
+
+      if (options["tool_colorcode_stats"]) {
+        loadStats();
+      }
+
+    });
   })();
 
 
-function loadData() {
+function loadStats() {
     let site = {};
     let data = [];
 

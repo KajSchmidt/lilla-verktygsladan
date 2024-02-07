@@ -58,10 +58,10 @@ function loadStats() {
                 data.push(programData);
 
                 // Färgkoda raden
-                if (programStudents > programSeats) {
+                if (programStudents >= programSeats) {
                     row.setAttribute("bgcolor", "#ccffcc");
                 }
-                else if (programStudents < (programSeats / 2)) {
+                else if (programStudents <= (programSeats / 2)) {
                     row.setAttribute("bgcolor", "#ffcccc");
                 }
                 else {

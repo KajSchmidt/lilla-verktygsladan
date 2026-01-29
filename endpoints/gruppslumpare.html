@@ -120,6 +120,9 @@
             return groups;
         }
 
+        let draggedElement = null;
+        let sourceList = null;
+
         const createCard = (adjList, nList, group, hColor, groupNumber, groupLeader) => {
             const card = document.querySelector('#card').content.cloneNode(true);
             const header = card.querySelector('.card__header');
@@ -129,11 +132,62 @@
             const adj = adjList.splice(getRandomInt(adjList.length), 1);
             const n = nList.splice(getRandomInt(nList.length), 1);
             h2.textContent = `${groupNumber ? groupNumber + '.' : ''} ${adj} ${n}`;
+            
+            // Setup drop zone on the list
+            list.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+            
+            list.addEventListener('dragenter', (e) => {
+                if (draggedElement && list !== sourceList) {
+                    list.classList.add('drag-over');
+                }
+            });
+            
+            list.addEventListener('dragleave', (e) => {
+                if (e.target === list) {
+                    list.classList.remove('drag-over');
+                }
+            });
+            
+            list.addEventListener('drop', (e) => {
+                e.preventDefault();
+                list.classList.remove('drag-over');
+                
+                if (draggedElement && list !== sourceList) {
+                    // Update the border color to match new group
+                    draggedElement.style.borderBottom = `1px solid ${hColor}`;
+                    // Move the element to the new list
+                    list.appendChild(draggedElement);
+                }
+            });
+            
             group.forEach((item, index) => {
                 const li = document.createElement('li');
                 li.textContent = `${item.namn} ${item.efternamn}`;
+                li.setAttribute('draggable', 'true');
+                li.dataset.person = `${item.namn} ${item.efternamn}`;
+                
                 if (groupLeader && index === 0) li.classList.add('card__list-item--leader');
                 li.style.borderBottom = `1px solid ${hColor}`;
+                
+                // Drag event listeners
+                li.addEventListener('dragstart', (e) => {
+                    draggedElement = li;
+                    sourceList = list;
+                    li.classList.add('dragging');
+                });
+                
+                li.addEventListener('dragend', (e) => {
+                    li.classList.remove('dragging');
+                    // Clean up all drag-over classes
+                    document.querySelectorAll('.drag-over').forEach(el => {
+                        el.classList.remove('drag-over');
+                    });
+                    draggedElement = null;
+                    sourceList = null;
+                });
+                
                 list.appendChild(li);
             });
             return card;

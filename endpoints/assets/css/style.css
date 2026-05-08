@@ -86,39 +86,6 @@
         flex-direction: column;
         align-items: stretch;
         padding-block: var(--space-m);
-        gap: var(--space-m);
-    }
-
-    .classroom-front {
-        width: calc(100vw - var(--space-l-xl));
-        margin-inline: auto;
-        padding: var(--space-s) var(--space-m);
-        border: 2px solid var(--color-dark);
-        border-radius: 1.25rem;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.2));
-        text-align: center;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
-    }
-
-    [display-theme='dark'] .classroom-front {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
-    }
-
-    .classroom-front__title,
-    .classroom-front__subtitle {
-        margin: 0;
-    }
-
-    .classroom-front__title {
-        font-size: var(--step-1);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
-
-    .classroom-front__subtitle {
-        margin-top: var(--space-3xs);
-        opacity: 0.75;
     }
 
     .card {

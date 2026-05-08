@@ -247,22 +247,8 @@
         const renderSeatPlan = (seatPlan, hColor) => {
             const main = document.querySelector('.seating-layout');
             const status = document.querySelector('#layout-status');
-            const frontMarker = document.createElement('section');
-            const frontLabel = document.createElement('p');
-            const frontSubLabel = document.createElement('p');
-
-            frontMarker.className = 'classroom-front';
-            frontMarker.style.borderColor = hColor;
-            frontLabel.className = 'classroom-front__title';
-            frontLabel.textContent = 'Larare / tavla / projektor';
-            frontSubLabel.className = 'classroom-front__subtitle';
-            frontSubLabel.textContent = 'Klassrummets framkant';
-
-            frontMarker.appendChild(frontLabel);
-            frontMarker.appendChild(frontSubLabel);
 
             main.innerHTML = '';
-            main.appendChild(frontMarker);
             seatPlan.rows.forEach((row, index) => {
                 main.appendChild(createSeatRow(row, index, hColor, seatPlan.seatsPerRow));
             });

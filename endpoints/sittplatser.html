@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sittplatser</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar__inner container">
+            <div class="input__group">
+                <label for="group-size" class="visually-hidden">
+                    Antal rader
+                </label>
+                <input class="input" type="number" id="group-size" name="group-size" min="1" max="10" value="3">
+                <button id="gs-shuffle" class="btn btn__icon active">
+                    <span class="visually-hidden">Antal rader</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path
+                            d="M760-200v-120H200v120h560Zm0-200v-160H200v160h560Zm0-240v-120H200v120h560ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="input__group">
+                <label for="number-of-groups" class="visually-hidden">
+                    Platser per rad
+                </label>
+                <input class="input" type="number" id="number-of-groups" name="number-of-groups" min="1" max="10"
+                    value="6">
+                <button id="nog-shuffle" class="btn btn__icon">
+                    <span class="visually-hidden">Platser per rad</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M0 18v-1.575q0-1.1 1.113-1.763Q2.225 14 4 14q.325 0 .625.012.3.013.575.063-.35.5-.525 1.075-.175.575-.175 1.225V18Zm6 0v-1.625q0-1.625 1.663-2.625 1.662-1 4.337-1 2.7 0 4.35 1 1.65 1 1.65 2.625V18Zm13.5 0v-1.625q0-.65-.163-1.225-.162-.575-.487-1.075.275-.05.563-.063Q19.7 14 20 14q1.8 0 2.9.662 1.1.663 1.1 1.763V18ZM12 14.75q-1.425 0-2.55.375-1.125.375-1.325.875H15.9q-.225-.5-1.338-.875Q13.45 14.75 12 14.75ZM4 13q-.825 0-1.412-.588Q2 11.825 2 11q0-.85.588-1.425Q3.175 9 4 9q.85 0 1.425.575Q6 10.15 6 11q0 .825-.575 1.412Q4.85 13 4 13Zm16 0q-.825 0-1.413-.588Q18 11.825 18 11q0-.85.587-1.425Q19.175 9 20 9q.85 0 1.425.575Q22 10.15 22 11q0 .825-.575 1.412Q20.85 13 20 13Zm-8-1q-1.25 0-2.125-.875T9 9q0-1.275.875-2.138Q10.75 6 12 6q1.275 0 2.137.862Q15 7.725 15 9q0 1.25-.863 2.125Q13.275 12 12 12Zm0-4q-.425 0-.712.287Q11 8.575 11 9t.288.712Q11.575 10 12 10t.713-.288Q13 9.425 13 9t-.287-.713Q12.425 8 12 8Zm0 8Zm0-7Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="input__group">
+                <button id="show-group-numbers" class="btn btn__icon">
+                    <span class="visually-hidden">Numrera platser</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M5.5 15v-4.5H4V9h3v6ZM9 15v-2.5q0-.425.288-.713.287-.287.712-.287h2v-1H9V9h3.5q.425 0 .713.287.287.288.287.713v1.5q0 .425-.287.712-.288.288-.713.288h-2v1h3V15Zm6 0v-1.5h3v-1h-2v-1h2v-1h-3V9h3.5q.425 0 .712.287.288.288.288.713v4q0 .425-.288.712-.287.288-.712.288Z" />
+                    </svg>
+                </button>
+                <button id="shuffle" class="btn btn__icon active">
+                    <span class="visually-hidden">Slumpa ny fördelning</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+                        <path
+                            d="M12 22q-1.875 0-3.512-.712-1.638-.713-2.85-1.926-1.213-1.212-1.926-2.85Q3 14.875 3 13h2q0 2.925 2.038 4.962Q9.075 20 12 20t4.962-2.038Q19 15.925 19 13t-2.038-4.963Q14.925 6 12 6h-.15l1.55 1.55L12 9 8 5l4-4 1.4 1.45L11.85 4H12q1.875 0 3.513.713 1.637.712 2.85 1.924 1.212 1.213 1.925 2.85Q21 11.125 21 13t-.712 3.512q-.713 1.638-1.925 2.85-1.213 1.213-2.85 1.926Q13.875 22 12 22Z" />
+                    </svg>
+                </button>
+                <button id="display-toggle" class="btn btn__icon active">
+                    <span class="visually-hidden">Byt till ljust eller mörkt tema</span>
+                    <svg id="light" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24">
+                        <path
+                            d="M480 696q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 616q-17 0-28.5-11.5T40 576q0-17 11.5-28.5T80 536h80q17 0 28.5 11.5T200 576q0 17-11.5 28.5T160 616H80Zm720 0q-17 0-28.5-11.5T760 576q0-17 11.5-28.5T800 536h80q17 0 28.5 11.5T920 576q0 17-11.5 28.5T880 616h-80ZM480 296q-17 0-28.5-11.5T440 256v-80q0-17 11.5-28.5T480 136q17 0 28.5 11.5T520 176v80q0 17-11.5 28.5T480 296Zm0 720q-17 0-28.5-11.5T440 976v-80q0-17 11.5-28.5T480 856q17 0 28.5 11.5T520 896v80q0 17-11.5 28.5T480 1016ZM226 378l-43-42q-12-11-11.5-28t11.5-29q12-12 29-12t28 12l42 43q11 12 11 28t-11 28q-11 12-27.5 11.5T226 378Zm494 495-42-43q-11-12-11-28.5t11-27.5q11-12 27.5-11.5T734 774l43 42q12 11 11.5 28T777 873q-12 12-29 12t-28-12Zm-42-495q-12-11-11.5-27.5T678 322l42-43q11-12 28-11.5t29 11.5q12 12 12 29t-12 28l-43 42q-12 11-28 11t-28-11ZM183 873q-12-12-12-29t12-28l43-42q12-11 28.5-11t27.5 11q12 11 11.5 27.5T282 830l-42 43q-11 12-28 11.5T183 873Zm297-297Z" />
+                    </svg>
+                    <svg id="dark" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24">
+                        <path
+                            d="M480 936q-150 0-255-105T120 576q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444 396q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <p id="layout-status" class="layout-status visually-hidden" aria-live="polite"></p>
+    <main class="seating-layout container">
+    </main>
+    <footer>
+
+    </footer>
+    <template id="card">
+        <div class="card">
+            <div class="card__header">
+                <h2></h2>
+            </div>
+            <div class="card__body">
+                <ul class="card__list"></ul>
+            </div>
+        </div>
+    </template>
+    <template id="seat-row">
+        <section class="card seat-row">
+            <div class="card__header seat-row__header">
+                <h2></h2>
+            </div>
+            <div class="card__body seat-row__body">
+                <div class="seat-row__seats"></div>
+            </div>
+        </section>
+    </template>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.6.1/randomColor.min.js"
+        integrity="sha512-vPeZ7JCboHcfpqSx5ZD+/jpEhS4JpXxfz9orSvAPPj0EKUVShU2tgy7XkU+oujBJKnWmu4hU7r9MMQNWPfXsYw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const shuffle = (arr) => arr.sort(() => .5 - Math.random());
+
+        const createSeatPlan = (list, rowCount, seatsPerRow) => {
+            const shuffledStudents = shuffle(Object.assign([], list));
+            const capacity = rowCount * seatsPerRow;
+            const seatedStudents = shuffledStudents.slice(0, capacity);
+            const overflow = shuffledStudents.slice(capacity);
+            const seatPool = shuffle([
+                ...seatedStudents,
+                ...Array(Math.max(capacity - seatedStudents.length, 0)).fill(null)
+            ]);
+            const rows = [];
+
+            for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+                rows.push(seatPool.splice(0, seatsPerRow));
+            }
+
+            return {
+                rows,
+                overflow,
+                rowCount,
+                seatsPerRow
+            };
+        };
+
+        let draggedSeatPosition = null;
+        let currentSeatPlan = null;
+        let showSeatNumbers = false;
+
+        const getStudentLabel = (student) => {
+            if (!student) return '';
+            return `${student.namn} ${student.efternamn}`.trim();
+        };
+
+        const clearDragState = () => {
+            draggedSeatPosition = null;
+            document.querySelectorAll('.drag-over').forEach((element) => {
+                element.classList.remove('drag-over');
+            });
+        };
+
+        const createSeat = (student, rowIndex, seatIndex, hColor) => {
+            const seat = document.createElement('div');
+            const seatNumber = document.createElement('span');
+            const seatLabel = document.createElement('span');
+            const hasStudent = Boolean(student);
+
+            seat.className = 'seat-row__seat';
+            seat.dataset.rowIndex = rowIndex;
+            seat.dataset.seatIndex = seatIndex;
+            seat.style.borderColor = hColor;
+
+            seatNumber.className = 'seat-row__seat-number';
+            seatNumber.textContent = `Plats ${seatIndex + 1}`;
+
+            seatLabel.className = 'seat-row__seat-label';
+            seatLabel.textContent = hasStudent ? getStudentLabel(student) : 'Tom plats';
+
+            if (!showSeatNumbers) {
+                seatNumber.classList.add('visually-hidden');
+            }
+
+            if (!hasStudent) {
+                seat.classList.add('seat-row__seat--empty');
+            } else {
+                seat.setAttribute('draggable', 'true');
+            }
+
+            seat.addEventListener('dragstart', () => {
+                if (!hasStudent) return;
+                draggedSeatPosition = { rowIndex, seatIndex };
+                seat.classList.add('dragging');
+            });
+
+            seat.addEventListener('dragover', (e) => {
+                if (!draggedSeatPosition) return;
+                e.preventDefault();
+            });
+
+            seat.addEventListener('dragenter', () => {
+                if (!draggedSeatPosition) return;
+                if (draggedSeatPosition.rowIndex === rowIndex && draggedSeatPosition.seatIndex === seatIndex) return;
+                seat.classList.add('drag-over');
+            });
+
+            seat.addEventListener('dragleave', (e) => {
+                if (e.target === seat) {
+                    seat.classList.remove('drag-over');
+                }
+            });
+
+            seat.addEventListener('drop', (e) => {
+                if (!draggedSeatPosition) return;
+                e.preventDefault();
+
+                const sameSeat = draggedSeatPosition.rowIndex === rowIndex && draggedSeatPosition.seatIndex === seatIndex;
+                seat.classList.remove('drag-over');
+                if (sameSeat) return;
+
+                const sourceStudent = currentSeatPlan.rows[draggedSeatPosition.rowIndex][draggedSeatPosition.seatIndex];
+                const targetStudent = currentSeatPlan.rows[rowIndex][seatIndex];
+
+                currentSeatPlan.rows[rowIndex][seatIndex] = sourceStudent;
+                currentSeatPlan.rows[draggedSeatPosition.rowIndex][draggedSeatPosition.seatIndex] = targetStudent;
+
+                clearDragState();
+                renderSeatPlan(currentSeatPlan, hColor);
+            });
+
+            seat.addEventListener('dragend', () => {
+                seat.classList.remove('dragging');
+                clearDragState();
+            });
+
+            seat.appendChild(seatNumber);
+            seat.appendChild(seatLabel);
+            return seat;
+        };
+
+        const createSeatRow = (row, rowIndex, hColor, seatsPerRow) => {
+            const rowCard = document.querySelector('#seat-row').content.cloneNode(true);
+            const header = rowCard.querySelector('.seat-row__header');
+            const title = header.querySelector('h2');
+            const seats = rowCard.querySelector('.seat-row__seats');
+            const leftSeatCount = Math.ceil(seatsPerRow / 2);
+            const rightSeatStartIndex = leftSeatCount;
+
+            header.style.backgroundColor = hColor;
+            title.textContent = `Rad ${rowIndex + 1}`;
+            seats.style.setProperty('--seat-columns', seatsPerRow);
+            seats.style.setProperty('--left-seat-columns', leftSeatCount);
+            seats.style.setProperty('--right-seat-columns', Math.max(seatsPerRow - leftSeatCount, 0));
+
+            row.forEach((student, seatIndex) => {
+                const seat = createSeat(student, rowIndex, seatIndex, hColor);
+
+                if (seatIndex >= rightSeatStartIndex) {
+                    seat.style.gridColumn = seatIndex + 2;
+                }
+
+                seats.appendChild(seat);
+            });
+
+            return rowCard;
+        };
+
+        const renderSeatPlan = (seatPlan, hColor) => {
+            const main = document.querySelector('.seating-layout');
+            const status = document.querySelector('#layout-status');
+            const frontMarker = document.createElement('section');
+            const frontLabel = document.createElement('p');
+            const frontSubLabel = document.createElement('p');
+
+            frontMarker.className = 'classroom-front';
+            frontMarker.style.borderColor = hColor;
+            frontLabel.className = 'classroom-front__title';
+            frontLabel.textContent = 'Larare / tavla / projektor';
+            frontSubLabel.className = 'classroom-front__subtitle';
+            frontSubLabel.textContent = 'Klassrummets framkant';
+
+            frontMarker.appendChild(frontLabel);
+            frontMarker.appendChild(frontSubLabel);
+
+            main.innerHTML = '';
+            main.appendChild(frontMarker);
+            seatPlan.rows.forEach((row, index) => {
+                main.appendChild(createSeatRow(row, index, hColor, seatPlan.seatsPerRow));
+            });
+
+            if (seatPlan.overflow.length > 0) {
+                status.classList.remove('visually-hidden');
+                status.textContent = `${seatPlan.overflow.length} elever fick inte plats. Öka antal rader eller platser per rad.`;
+            } else {
+                status.classList.add('visually-hidden');
+                status.textContent = '';
+            }
+        };
+
+        (function () {
+            const rawList = new URLSearchParams(window.location.search).get('list');
+            const data = rawList ? JSON.parse(decodeURIComponent(rawList)) : [];
+            const rowCountInput = document.querySelector('#group-size');
+            const seatsPerRowInput = document.querySelector('#number-of-groups');
+            const rowCountButton = document.querySelector('#gs-shuffle');
+            const seatsPerRowButton = document.querySelector('#nog-shuffle');
+            const showSeatNumbersButton = document.querySelector('#show-group-numbers');
+            const main = document.querySelector('.seating-layout');
+
+            const color = randomColor({
+                luminosity: 'light',
+                hue: 'random',
+                count: 3
+            });
+
+            const parsePositiveValue = (value, fallback) => {
+                const parsedValue = parseInt(value, 10);
+                return Number.isFinite(parsedValue) && parsedValue > 0 ? parsedValue : fallback;
+            };
+
+            const randomizeSeats = () => {
+                const rowCount = parsePositiveValue(rowCountInput.value, 3);
+                const seatsPerRow = parsePositiveValue(seatsPerRowInput.value, 6);
+
+                rowCountInput.value = rowCount;
+                seatsPerRowInput.value = seatsPerRow;
+                currentSeatPlan = createSeatPlan(data, rowCount, seatsPerRow);
+                renderSeatPlan(currentSeatPlan, color[2]);
+            };
+
+            /*
+            * display mode
+            */
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            const currentTheme = localStorage.getItem('theme');
+            const displayModeButton = document.querySelector('#display-toggle');
+
+            const showDisplayModeIcon = (btn, theme) => {
+                if (theme == 'dark') {
+                    btn.querySelector('#dark').classList.remove('d-none');
+                    btn.querySelector('#light').classList.add('d-none');
+                } else if (theme == 'light') {
+                    btn.querySelector('#dark').classList.add('d-none');
+                    btn.querySelector('#light').classList.remove('d-none');
+                }
+            }
+
+            if (currentTheme == 'dark') {
+                document.documentElement.setAttribute('display-theme', 'dark');
+            } else if (currentTheme == 'light') {
+                document.documentElement.setAttribute('display-theme', 'light');
+            }
+
+            showDisplayModeIcon(displayModeButton, currentTheme);
+
+            let theme;
+            displayModeButton.addEventListener('click', () => {
+                if (prefersDarkScheme.matches) {
+                    theme = document.documentElement.getAttribute('display-theme') == 'dark' ? 'light' : 'dark';
+                } else {
+                    theme = document.documentElement.getAttribute('display-theme') == 'dark' ? 'light' : 'dark';
+                }
+                document.documentElement.setAttribute('display-theme', theme);
+                localStorage.setItem('theme', theme);
+                showDisplayModeIcon(displayModeButton, theme);
+            });
+
+            rowCountButton.classList.add('active');
+            seatsPerRowButton.classList.add('active');
+            showSeatNumbers = showSeatNumbersButton.classList.contains('active');
+
+            randomizeSeats();
+            document.querySelector('nav').style.backgroundColor = color[2];
+            main.style.setProperty('--row-color', color[2]);
+
+            document.querySelector('#shuffle').addEventListener('click', () => {
+                clearDragState();
+                randomizeSeats();
+            });
+
+            rowCountInput.addEventListener('change', randomizeSeats);
+            seatsPerRowInput.addEventListener('change', randomizeSeats);
+
+            rowCountButton.addEventListener('click', () => {
+                clearDragState();
+                randomizeSeats();
+            });
+
+            seatsPerRowButton.addEventListener('click', () => {
+                clearDragState();
+                randomizeSeats();
+            });
+
+            showSeatNumbersButton.addEventListener('click', () => {
+                showSeatNumbers = !showSeatNumbers;
+                showSeatNumbersButton.classList.toggle('active');
+                if (currentSeatPlan) {
+                    renderSeatPlan(currentSeatPlan, color[2]);
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

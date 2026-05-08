@@ -1,90 +1,103 @@
 <!doctype html>
 <html lang="sv">
-  <head>
-      <meta charset="utf-8">
-      
-      <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="bootstrap-icons-1.10.2/bootstrap-icons.css">
-      <style>
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-icons-1.10.2/bootstrap-icons.css">
+    <style>
         @font-face {
-          font-family: TilliumWebbSemiBold;
-          src: url(Titillium_Web/TitilliumWeb-SemiBold.ttf);
+            font-family: TilliumWebbSemiBold;
+            src: url(Titillium_Web/TitilliumWeb-SemiBold.ttf);
         }
 
         @font-face {
-          font-family: TilliumWebbRegular;
-          src: url(Titillium_Web/TitilliumWeb-Regular.ttf);
+            font-family: TilliumWebbRegular;
+            src: url(Titillium_Web/TitilliumWeb-Regular.ttf);
         }
 
         body {
-          width: 300px;
-          font-family: TilliumWebbRegular;
+            width: 300px;
+            font-family: TilliumWebbRegular;
         }
 
-        .card, .card-header {
-          border-radius: 0 !important;
+        .card,
+        .card-header {
+            border-radius: 0 !important;
         }
 
         .card-header {
-          font-size: 0.7em;
-          font-family: TilliumWebbSemiBold;
-          height: 2em;
-          padding-top: 0.2em;
-          background-image: url("img/header.png");
-          background-size: cover;
+            font-size: 0.7em;
+            font-family: TilliumWebbSemiBold;
+            height: 2em;
+            padding-top: 0.2em;
+            background-image: url("img/header.png");
+            background-size: cover;
         }
 
         .card-footer {
-          font-size: 0.6em;
-          height: 2em;
-          padding-top: 0.2em;
-          text-align: end;
-          background-image: url("img/footer.png");
-          background-size: cover;
+            font-size: 0.6em;
+            height: 2em;
+            padding-top: 0.2em;
+            text-align: end;
+            background-image: url("img/footer.png");
+            background-size: cover;
         }
 
-        .card-footer > i {
-          margin-left: 5px;
+        .card-footer>i {
+            margin-left: 5px;
         }
 
 
         /* NTIG-specifika färgscheman */
 
         .bg-magenta {
-          color: #dd0890;
+            color: #dd0890;
         }
 
-        .text-bg-magenta, .btn-magenta {
-          background-color: #dd0890;
-          color: #ffffff;
+        .text-bg-magenta,
+        .btn-magenta {
+            background-color: #dd0890;
+            color: #ffffff;
         }
 
-        .btn-magenta:active, .btn-magenta:hover, .btn-magenta:focus {
-          background-color: #850456 !important;
-          color: #ffffff !important;
+        .btn-magenta:active,
+        .btn-magenta:hover,
+        .btn-magenta:focus {
+            background-color: #850456 !important;
+            color: #ffffff !important;
         }
-    
-      </style>
-  </head>
+    </style>
+</head>
+
 <body>
 
-<div class="card">
-  <div class="card-header text-bg-magenta">
-    <i class="bi bi-tools"></i> Lilla Verktygslådan
-  </div>
-  <div class="card-body">
+    <div class="card">
+        <div class="card-header text-bg-magenta">
+            <i class="bi bi-tools"></i> Lilla Verktygslådan
+        </div>
+        <div class="card-body">
 
-    <ul class="list-group list-group-flush">
-      <button class="btn btn-magenta" data-checkfor="/jsp/teacher/right_teacher_lesson_status.jsp?lesson" data-href="https://kajschmidt.github.io/lilla-verktygsladan/endpoints/gruppslumpare.html?list=" data-method="uri" data-filter="1,9">
-        <i class="bi bi-people-fill"></i> Slumpa grupper</button>
-  </ul>
+            <ul class="list-group list-group-flush">
+                <button class="btn btn-magenta mb-3" data-checkfor="/jsp/teacher/right_teacher_lesson_status.jsp?lesson"
+                    data-href="https://kajschmidt.github.io/lilla-verktygsladan/endpoints/gruppslumpare.html?list="
+                    data-method="uri" data-filter="1,9">
+                    <i class="bi bi-people-fill"></i> Slumpa grupper</button>
+                                    <button class="btn btn-magenta" data-checkfor="/jsp/teacher/right_teacher_lesson_status.jsp?lesson"
+                    data-href="https://kajschmidt.github.io/lilla-verktygsladan/endpoints/sittplatser.html?list="
+                    data-method="uri" data-filter="1,9">
+                    <i class="bi bi-people-fill"></i> Slumpa sittplatser</button>
+            </ul>
 
-  </div>
-  <div class="card-footer">
-    <a href="https://github.com/KajSchmidt/lilla-verktygsladan"  class="link-dark" target="_blank"><i class="bi bi-github"></i></a>
-  </div>
-</div>
+        </div>
+        <div class="card-footer">
+            <a href="https://github.com/KajSchmidt/lilla-verktygsladan" class="link-dark" target="_blank"><i
+                    class="bi bi-github"></i></a>
+        </div>
+    </div>
 
-<script src="popup.js"></script>
+    <script src="popup.js"></script>
 </body>
+
 </html>
